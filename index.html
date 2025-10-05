@@ -64,18 +64,26 @@
             color: var(--text-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+       
+        /* --- TAREA 2: MEJORA DE NAVEGACIÓN --- */
+        header.header-nav {
+            transition: transform 0.4s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        header.header-hidden {
+            transform: translateY(-100%);
+        }
         
         /* Animaciones personalizadas */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
         }
-        
+       
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
-        
+       
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -86,7 +94,7 @@
                 transform: translateY(0);
             }
         }
-        
+       
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -97,13 +105,13 @@
                 transform: translateX(0);
             }
         }
-        
+       
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
+       
         /* Mejoras de navegación */
         .nav-link.active { 
             color: var(--accent); 
@@ -121,7 +129,7 @@
             border-radius: 2px;
             animation: shimmer 2s infinite;
         }
-        
+       
         /* Efectos de página */
         .page-content { 
             display: none; 
@@ -129,7 +137,7 @@
         .page-content.active { 
             display: block; 
         }
-        
+       
         /* Mejoras de tarjetas */
         .card-hover { 
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -160,7 +168,7 @@
         .card-hover:hover::before {
             opacity: 1;
         }
-        
+       
         /* Animaciones de scroll */
         .animate-on-scroll { 
             opacity: 0; 
@@ -171,7 +179,7 @@
             opacity: 1; 
             transform: translateY(0); 
         }
-        
+       
         /* Acordeón mejorado */
         .accordion-content { 
             max-height: 0; 
@@ -182,7 +190,7 @@
             max-height: 3000px; 
             transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1); 
         }
-        
+       
         /* Efecto parallax mejorado */
         .parallax { 
             background-attachment: fixed; 
@@ -206,7 +214,7 @@
             position: relative;
             z-index: 2;
         }
-        
+       
         /* Botón flotante mejorado */
         .float-button { 
             position: fixed; 
@@ -238,7 +246,7 @@
             background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
             box-shadow: 0 15px 35px rgba(231, 185, 60, 0.5);
         }
-        
+       
         /* Botones de filtro mejorados */
         .filter-btn { 
             transition: all 0.4s ease; 
@@ -276,7 +284,7 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-        
+       
         /* Tarjetas de razas mejoradas */
         .breed-card { 
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -374,7 +382,7 @@
             padding-top: 1.2rem;
             border-top: 1px solid var(--border-color);
         }
-        
+       
         /* Modal mejorado */
         .modal { 
             display: none; 
@@ -463,7 +471,7 @@
             background-color: rgba(255, 255, 255, 0.1);
             transform: rotate(90deg);
         }
-        
+       
         /* Carrusel mejorado */
         .carousel-container { 
             position: relative; 
@@ -843,7 +851,7 @@
             0% { transform: rotate(0deg); } 
             100% { transform: rotate(360deg); } 
         }
-        
+       
         /* Estilos para el carrusel de razas */
         .hide-scrollbar {
             -ms-overflow-style: none;
@@ -857,7 +865,7 @@
             scroll-behavior: smooth;
             padding: 0 40px;
         }
-        
+       
         /* Mejoras visuales adicionales */
         .btn-primary {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
@@ -1065,30 +1073,86 @@
             color: var(--accent);
             font-size: 1.3rem;
         }
+       
+        /* --- TAREA 1: ESTILOS DE NUEVA SECCIÓN DE POLÍTICAS --- */
+        .policy-header-visual {
+            text-align: center;
+            padding: 4rem 1rem;
+            border-radius: 20px;
+            background-color: var(--bg-secondary);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .policy-header-visual .icon {
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+        }
+        .policy-header-visual h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .policy-header-visual h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s ease-out;
+        }
+        .is-visible .policy-header-visual h2::after {
+            transform: scaleX(1);
+        }
+        .policy-header-visual p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .accordion-item {
-            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
+            background: transparent;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
             transition: all 0.4s ease;
         }
-        .accordion-item:hover {
+        .accordion-item.open {
+            border-left: 5px solid var(--accent);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--accent);
         }
         .accordion-header {
             padding: 20px 25px;
-            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-tertiary) 100%);
+            background-color: var(--bg-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .accordion-header:hover {
-            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-color) 100%);
+        .accordion-item.open .accordion-header {
+            background-color: var(--bg-tertiary);
         }
-        .accordion-header h2 {
+        .accordion-header:hover {
+             background-color: var(--bg-tertiary);
+        }
+        .accordion-header h3 {
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--primary);
@@ -1098,35 +1162,46 @@
             color: var(--accent);
             font-size: 1.2rem;
         }
-        .accordion-content {
-            padding: 0 25px;
+        .accordion-content-inner {
+            padding: 25px;
             background-color: var(--bg-secondary);
         }
-        .accordion-content p {
-            padding: 20px 0;
-            color: var(--text-secondary);
+        .policy-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
             line-height: 1.7;
+            font-size: 1.1rem;
         }
-        .accordion-content ul {
-            padding: 0 25px 20px 25px;
-            color: var(--text-secondary);
+        .policy-point-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 4px;
         }
-        .accordion-content li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 28px;
-            line-height: 1.6;
+        .highlight-box-policy {
+            background-color: var(--bg-tertiary);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
         }
-        .accordion-content li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent);
-            border-radius: 50%;
+        .final-cta {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background-color: var(--bg-tertiary);
+            border-radius: 20px;
+            margin-top: 3rem;
         }
+        .final-cta p {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+        /* --- FIN TAREA 1 --- */
+
         .footer {
             background: linear-gradient(180deg, var(--primary) 0%, var(--primary-hover) 100%);
             position: relative;
@@ -1359,64 +1434,10 @@
         .card-hover-effect:hover {
             transform: translateY(-8px);
         }
-        .shimmer {
-            background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-tertiary) 50%, var(--bg-tertiary) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        
-        /* Animaciones de carga */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: 8px;
-        }
-        
-        /* Efectos de partículas */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .particle {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(231, 185, 60, 0.1) 0%, transparent 70%);
-            animation: float 8s infinite ease-in-out;
-        }
-        
-        /* Efectos de glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Efectos de neón */
-        .neon {
-            text-shadow: 0 0 10px rgba(231, 185, 60, 0.8),
-                         0 0 20px rgba(231, 185, 60, 0.6),
-                         0 0 30px rgba(231, 185, 60, 0.4);
-        }
-        
-        /* Efectos de brillo */
-        .glow {
-            box-shadow: 0 0 20px rgba(231, 185, 60, 0.5);
-        }
     </style>
 </head>
 <body class="text-dark-text">
-    <div class="bg-primary text-white p-4 text-center shadow-lg sticky top-0 z-40">
+    <div class="bg-primary text-white p-4 text-center shadow-lg sticky top-0 z-50">
         <div class="banner max-w-7xl mx-auto">
             <span class="banner-text">¿Buscando una mascota premium? →</span>
             <a id="whatsapp-banner" href="https://wa.me/529811579841?text=Estoy%20interesado%20en%20sus%20mascotas%20premium." target="_blank" class="banner-button">
@@ -1425,7 +1446,7 @@
         </div>
     </div>
 
-    <header class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-16 z-30">
+    <header id="main-header" class="header-nav bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 nav-link" data-target="inicio">
                 <div class="footer-logo">GC</div>
@@ -1484,7 +1505,7 @@
     <div id="back-to-top" class="float-button">
         <i class="fas fa-arrow-up"></i>
     </div>
-    
+   
     <div id="chat-bubble" class="chat-bubble" style="display: flex;">
         <i class="fas fa-comments"></i>
     </div>
@@ -1587,11 +1608,10 @@
                 <button id="carousel-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-primary rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all">
                     <i class="fas fa-chevron-right"></i>
                 </button>
-                
+               
                 <div class="breed-carousel overflow-x-auto pb-6 hide-scrollbar">
                     <div class="flex space-x-6 breed-gallery" style="width: max-content;">
-                        <!-- Tarjetas de razas se generarán dinámicamente con JavaScript -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </section>
@@ -1618,7 +1638,7 @@
                         </div>
                     </div>
                 </div>
-                
+               
                 <div class="service-card animate-on-scroll card-hover-effect" style="transition-delay: 150ms;">
                     <div class="service-icon">
                         <i class="fas fa-seedling text-3xl text-white"></i>
@@ -1637,7 +1657,7 @@
                         </div>
                     </div>
                 </div>
-                
+               
                 <div class="service-card animate-on-scroll card-hover-effect">
                     <div class="service-icon">
                         <i class="fas fa-shield-virus text-3xl text-white"></i>
@@ -1650,7 +1670,7 @@
                         </div>
                     </div>
                 </div>
-                
+               
                 <div class="service-card animate-on-scroll card-hover-effect" style="transition-delay: 150ms;">
                     <div class="service-icon">
                         <i class="fas fa-stethoscope text-3xl text-white"></i>
@@ -1680,7 +1700,7 @@
                     <h2 class="section-title font-serif">Club Premium GCMiRinconcito</h2>
                     <p class="text-3xl font-semibold text-accent">Recompensamos tu lealtad.</p>
                 </div>
-                
+               
                 <div class="mt-10 highlight-box animate-on-scroll" style="transition-delay: 150ms;">
                     <h3>Acumula el 6% del total de tu compra en puntos.</h3>
                 </div>
@@ -1751,7 +1771,7 @@
                         </table>
                     </div>
                 </div>
-                
+               
                 <div class="mt-20 text-center animate-on-scroll">
                     <h3 class="text-2xl font-bold mb-6 text-primary">¿Listo para unirte al club?</h3>
                     <p class="text-medium-text mb-8 max-w-2xl mx-auto text-lg">Regístrate en tu próxima compra y comienza a disfrutar de los beneficios exclusivos de nuestro programa de lealtad.</p>
@@ -1761,112 +1781,174 @@
                 </div>
             </div>
         </section>
-        
+       
         <section id="politicas" class="page-content">
-            <div class="bg-white p-12 rounded-2xl shadow-xl animate-on-scroll">
-                <h2 class="section-title font-serif text-center mb-12">Políticas de Servicio y Garantías</h2>
-                
-                <div class="space-y-8">
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <h2 class="text-2xl font-semibold text-primary">Política de Envíos y Entregas</h2>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <ul>
-                                <li><strong>Clientes Nuevos:</strong> Para el primer servicio a domicilio, se requiere el pago anticipado del costo de envío. El valor del producto se liquida al repartidor en el momento de la entrega.</li>
-                                <li><strong>Clientes Frecuentes:</strong> Los clientes registrados podrán liquidar el costo total (producto + envío) al recibir su pedido.</li>
-                                <li><strong>Envíos Nacionales (MercadoLibre):</strong> Las compras realizadas en esta plataforma se gestionan bajo sus términos y sistema de envíos. El pedido se despacha al siguiente día hábil de la compra.</li>
-                            </ul>
+            <div class="policy-header-visual animate-on-scroll">
+                <i class="fas fa-shield-alt icon"></i>
+                <h2>Tu confianza es nuestra prioridad</h2>
+                <p>Conoce nuestras políticas de servicio, envío y garantía. Diseñadas para brindarte seguridad y tranquilidad al adquirir tu ejemplar premium.</p>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="accordion-item animate-on-scroll">
+                    <button class="accordion-header">
+                        <div class="flex items-center">
+                           <span class="text-2xl mr-4" style="color: var(--accent);">🚚</span>
+                           <h3>Política de Envíos y Entregas</h3>
                         </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <h2 class="text-2xl font-semibold text-primary">Política de Apartado y Preventa</h2>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <ul>
-                                <li><strong>Apartado Estándar (24 horas):</strong> Se puede reservar un ejemplar abonando el 50% de su valor. Esta reserva es válida por 24 horas. Si la compra no se concreta en este plazo, la reserva se cancela y el importe del apartado no es reembolsable.</li>
-                                <li><strong>Apartado para Fecha Específica:</strong> Para reservar un ejemplar para una fecha futura, se aplica un cargo adicional de $50 por concepto de hospedaje y alimentación por cada 5 días. En caso de cancelación, el apartado inicial del 50% no es reembolsable. El cargo por hospedaje no será reembolsado si el periodo de 5 días ya ha comenzado.</li>
-                                <li><strong>Apartado en Preventa:</strong> Una vez disponible el ejemplar, el cliente tiene 72 horas para recogerlo o coordinar su envío. Si no se concreta la compra en este plazo, se aplicará una penalización de $50 y se reembolsará el importe restante del abono inicial.</li>
-                                <li><strong>Cancelación de Preventa:</strong> Se puede cancelar una preventa sin penalización hasta un día antes de la fecha oficial de disponibilidad.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <h2 class="text-2xl font-semibold text-primary">Proceso de Devolución de Importes</h2>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Para solicitar un reembolso aplicable (según la política de preventa), el cliente debe presentar su ticket de compra en un plazo no mayor a 3 días hábiles desde la cancelación. Si no se solicita en este periodo, no procederá la devolución.</li>
-                                <li>Todo reembolso aprobado se procesará en un lapso máximo de 72 horas hábiles.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <h2 class="text-2xl font-semibold text-primary">Garantía de Bienestar "GRAMIR" (Sustitución)</h2>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Esta garantía cubre el fallecimiento de un ejemplar dentro de las <strong>48 horas</strong> posteriores a su adquisición. Ofrece el cambio por un ejemplar de la misma raza (o la siguiente disponible).</p>
-                            
-                            <h4 class="font-semibold text-xl mb-3 mt-5 text-primary">Condiciones para validación:</h4>
-                            <ol class="list-decimal list-inside space-y-3">
-                                <li>Presentar el ticket de compra original.</li>
-                                <li>Presentar el cuerpo del ejemplar para la realización de una necropsia interna (sin costo para el cliente).</li>
-                                <li>Proporcionar el código de informe generado al reportar el caso.</li>
-                            </ol>
-                            
-                            <h4 class="font-semibold text-xl mb-3 mt-5 text-primary">Aplicabilidad:</h4>
-                            <p>La garantía será válida únicamente si la necropsia interna determina que la causa de muerte fue una enfermedad o condición congénita adquirida en nuestras instalaciones.</p>
-                            
-                            <h4 class="font-semibold text-xl mb-3 mt-5 text-primary">Exclusiones:</h4>
-                            <p>La garantía queda invalidada si la necropsia determina que la causa de muerte deriva de negligencia o factores externos posteriores a la compra, incluyendo pero no limitado a: maltrato, asfixia, traumatismos, deshidratación, golpe de calor, paro cardíaco, problemas digestivos agudos o intoxicación alimentaria.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <h2 class="text-2xl font-semibold text-primary">Garantía de Reembolso Total (Condiciones Específicas)</h2>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Se realizará una devolución completa del dinero únicamente si se cumplen <strong>todas</strong> las siguientes condiciones:</p>
-                            
-                            <ol class="list-decimal list-inside space-y-3">
-                                <li>El fallecimiento es reportado en las primeras <strong>8 horas</strong> posteriores a la compra.</li>
-                                <li>El cliente presenta el cuerpo del ejemplar, el ticket de compra y el código de informe.</li>
-                                <li>El cliente presenta un certificado de necropsia expedido por un médico veterinario externo (especialista en exóticos, con cédula profesional vigente), cuyo dictamen confirme que la causa de muerte fue una enfermedad adquirida en nuestras instalaciones.</li>
-                            </ol>
-                            
-                            <div class="bg-red-100 border-l-4 border-red-500 text-red-800 p-5 rounded-md mt-5">
-                                <p class="font-semibold text-lg">Nota Importante:</p>
-                                <p>Los honorarios del veterinario externo corren por cuenta exclusiva del cliente y no serán cubiertos por la empresa en ningún caso.</p>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <div class="policy-point">
+                                <span class="policy-point-icon">🐇</span>
+                                <div>
+                                    <strong class="text-primary">Clientes Nuevos:</strong> Para el primer servicio a domicilio, se requiere el pago anticipado del costo de envío. El valor del producto se liquida al repartidor en el momento de la entrega.
+                                </div>
+                            </div>
+                            <div class="policy-point">
+                                <span class="policy-point-icon">⭐</span>
+                                <div>
+                                    <strong class="text-primary">Clientes Frecuentes:</strong> Los clientes registrados podrán liquidar el costo total (producto + envío) al recibir su pedido.
+                                </div>
+                            </div>
+                             <div class="policy-point">
+                                <span class="policy-point-icon">🌐</span>
+                                <div>
+                                    <strong class="text-primary">Envíos Nacionales (MercadoLibre):</strong> Las compras realizadas en esta plataforma se gestionan bajo sus términos. El pedido se despacha al siguiente día hábil.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <h2 class="text-2xl font-semibold text-primary">Cláusula General</h2>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Cualquier situación no especificada explícitamente en estas políticas queda excluida de nuestras garantías.</p>
+                </div>
+
+                <div class="accordion-item animate-on-scroll" style="transition-delay: 100ms;">
+                    <button class="accordion-header">
+                        <div class="flex items-center">
+                           <span class="text-2xl mr-4" style="color: var(--accent);">📦</span>
+                           <h3>Política de Apartado y Preventa</h3>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                             <div class="policy-point">
+                                <span class="policy-point-icon">⏱️</span>
+                                <div><strong class="text-primary">Apartado Estándar (24 horas):</strong> Abona el 50% para reservar un ejemplar por 24 horas. El abono no es reembolsable si la compra se cancela.</div>
+                            </div>
+                            <div class="policy-point">
+                                <span class="policy-point-icon">🗓️</span>
+                                <div><strong class="text-primary">Apartado para Fecha Específica:</strong> Se aplica un cargo adicional de $50 por hospedaje cada 5 días. El abono inicial no es reembolsable en caso de cancelación.</div>
+                            </div>
+                             <div class="policy-point">
+                                <span class="policy-point-icon">✔️</span>
+                                <div><strong class="text-primary">Apartado en Preventa:</strong> Tienes 72 horas para concretar la compra una vez disponible el ejemplar. Si no, se aplicará una penalización de $50 sobre el abono.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="accordion-item animate-on-scroll" style="transition-delay: 200ms;">
+                    <button class="accordion-header">
+                        <div class="flex items-center">
+                           <span class="text-2xl mr-4" style="color: var(--accent);">💸</span>
+                           <h3>Proceso de Devolución de Importes</h3>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <div class="policy-point">
+                                <span class="policy-point-icon">🎫</span>
+                                <div>Para solicitar un reembolso aplicable, presenta tu ticket de compra en un plazo no mayor a 3 días hábiles desde la cancelación.</div>
+                            </div>
+                            <div class="policy-point">
+                                <span class="policy-point-icon">✅</span>
+                                <div>Todo reembolso aprobado se procesará en un lapso máximo de 72 horas hábiles.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item animate-on-scroll" style="transition-delay: 300ms;">
+                    <button class="accordion-header">
+                         <div class="flex items-center">
+                           <span class="text-2xl mr-4" style="color: var(--accent);">🩺</span>
+                           <h3>Garantía de Bienestar "GRAMIR" (Sustitución)</h3>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                       <div class="accordion-content-inner">
+                           <p class="mb-6 text-lg">Esta garantía cubre el fallecimiento de un ejemplar dentro de las <strong>48 horas</strong> posteriores a su adquisición y ofrece el cambio por uno de la misma raza (o la siguiente disponible).</p>
+                           <div class="highlight-box-policy">
+                               <h4 class="font-bold text-primary text-xl mb-3">Condiciones para Validación:</h4>
+                               <ul class="list-disc list-inside space-y-2">
+                                   <li>Presentar ticket de compra original.</li>
+                                   <li>Presentar el cuerpo del ejemplar para necropsia interna (sin costo).</li>
+                                   <li>Proporcionar el código de informe del caso.</li>
+                               </ul>
+                           </div>
+                           <p class="text-lg">La garantía es válida si la necropsia determina que la causa fue una condición preexistente de nuestras instalaciones. Queda invalidada por negligencia o factores externos (golpes, deshidratación, etc.).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item animate-on-scroll" style="transition-delay: 400ms;">
+                    <button class="accordion-header">
+                        <div class="flex items-center">
+                           <span class="text-2xl mr-4" style="color: var(--accent);">💰</span>
+                           <h3>Garantía de Reembolso Total</h3>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                         <div class="accordion-content-inner">
+                             <p class="mb-6 text-lg">Se realizará una devolución completa únicamente si se cumplen <strong>todas</strong> las siguientes condiciones:</p>
+                             <div class="policy-point">
+                                <span class="policy-point-icon">1.</span>
+                                <div>El fallecimiento es reportado en las primeras <strong>8 horas</strong>.</div>
+                            </div>
+                             <div class="policy-point">
+                                <span class="policy-point-icon">2.</span>
+                                <div>Se presenta el cuerpo, ticket y código de informe.</div>
+                            </div>
+                             <div class="policy-point">
+                                <span class="policy-point-icon">3.</span>
+                                <div>Se presenta un certificado de necropsia de un veterinario externo que confirme una enfermedad preexistente.</div>
+                            </div>
+                             <div class="bg-red-100 border-l-4 border-red-500 text-red-800 p-5 rounded-md mt-5">
+                                 <p class="font-semibold text-lg">Nota: Los honorarios del veterinario externo corren por cuenta del cliente.</p>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item animate-on-scroll" style="transition-delay: 500ms;">
+                    <button class="accordion-header">
+                         <div class="flex items-center">
+                           <span class="text-2xl mr-4" style="color: var(--accent);">📜</span>
+                           <h3>Cláusula General</h3>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                         <div class="accordion-content-inner">
+                            <p class="text-lg">Cualquier situación no especificada explícitamente en estas políticas queda excluida de nuestras garantías.</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-cta animate-on-scroll">
+                <p>🐇 “Nuestro compromiso va más allá de la venta: queremos que disfrutes la experiencia Mi Rinconcito desde el primer día.”</p>
+                <a href="https://wa.me/529811579841?text=Tengo%20una%20duda%20sobre%20sus%20pol%C3%ADticas." target="_blank" class="btn-accent text-lg">
+                    <i class="fab fa-whatsapp mr-2"></i> ¿Tienes dudas? Contáctanos
+                </a>
             </div>
         </section>
     </main>
-    
+   
     <footer class="footer text-white mt-20">
         <div class="container mx-auto px-6 py-12">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -1919,11 +2001,11 @@
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
             const accordionHeaders = document.querySelectorAll('.accordion-header');
-            
+           
             // Theme toggle elements
             const themeToggle = document.getElementById('theme-toggle');
             const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-            
+           
             // Chatbot UI elements
             const chatBubble = document.getElementById('chat-bubble');
             const chatWidget = document.getElementById('chat-widget');
@@ -1961,7 +2043,7 @@
                 const isDark = document.body.classList.contains('dark-theme');
                 const themeIcon = document.querySelector('#theme-toggle i');
                 const themeIconMobile = document.querySelector('#theme-toggle-mobile i');
-                
+               
                 if (isDark) {
                     themeIcon.classList.remove('fa-moon');
                     themeIcon.classList.add('fa-sun');
@@ -1989,12 +2071,43 @@
 
             themeToggle.addEventListener('click', toggleTheme);
             themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // --- TAREA 2: LÓGICA DE NAVEGACIÓN INTERACTIVA ---
+            const header = document.getElementById('main-header');
+            const banner = document.querySelector('.sticky.top-0.z-50'); // El banner superior
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // 1. Ocultar/mostrar header al hacer scroll
+                if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
+                    // Scroll Down
+                    header.classList.add('header-hidden');
+                } else {
+                    // Scroll Up
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+
+                // 2. Corregir transparencia del header al hacer scroll
+                // El top del header es la altura del banner que está encima
+                const bannerHeight = banner ? banner.offsetHeight : 0;
+                if (scrollTop > bannerHeight) {
+                    header.classList.remove('bg-white/80', 'backdrop-blur-lg');
+                    header.style.backgroundColor = 'var(--bg-secondary)'; // Usa el color de fondo del tema
+                } else {
+                    header.classList.add('bg-white/80', 'backdrop-blur-lg');
+                    header.style.backgroundColor = '';
+                }
+            });
+            // --- FIN TAREA 2 ---
 
             function toggleChatWidget() {
                 chatWidget.classList.toggle('visible');
                 chatBubble.style.display = chatWidget.classList.contains('visible') ? 'none' : 'flex';
                 clearTimeout(proactiveChatTimer); 
-                
+               
                 if (chatWidget.classList.contains('visible') && !chatInitiated) {
                     initiateChat();
                 }
@@ -2002,7 +2115,7 @@
 
             function minimizeChatWidget() {
                 chatMinimized = !chatMinimized;
-                
+               
                 if (chatMinimized) {
                     // Ocultar el widget y mostrar la burbuja
                     chatWidget.classList.remove('visible');
@@ -2036,7 +2149,7 @@
                 chatHistory = [{ role: 'model', parts: [{ text: namePrompt }] }];
                 setInactivityTimers();
             }
-            
+           
             function addMessage(text, sender, isLoading = false, playSound = true) {
                 const messageEl = document.createElement('div');
                 messageEl.classList.add('message', sender);
@@ -2063,7 +2176,7 @@
                     }
                 }
             }
-            
+           
             function showRatingSystem() {
                 conversationEnded = true;
                 clearInactivityTimers();
@@ -2071,7 +2184,7 @@
                 ratingContainer.className = 'rating-container';
                 ratingContainer.innerHTML = `<h4>¿Cómo calificarías mi atención?</h4><div class="stars">${[1,2,3,4,5].map(r => `<span class="star" data-rating="${r}"><i class="fas fa-star"></i></span>`).join('')}</div><button class="feedback-btn">Enviar calificación</button>`;
                 chatMessages.appendChild(ratingContainer);
-                
+               
                 const stars = ratingContainer.querySelectorAll('.star');
                 stars.forEach(star => {
                     star.addEventListener('click', function() {
@@ -2079,7 +2192,7 @@
                         stars.forEach(s => s.classList.toggle('active', s.dataset.rating <= rating));
                     });
                 });
-                
+               
                 ratingContainer.querySelector('.feedback-btn').addEventListener('click', function() {
                     const activeStars = ratingContainer.querySelectorAll('.star.active').length;
                     if (activeStars > 0) {
@@ -2123,7 +2236,7 @@
                 clearTimeout(inactivityTimer);
                 clearTimeout(closeChatTimer);
             }
-            
+           
             let usedInactivityMessages = new Set();
             function getInactivityMessage() {
                  const inactivityMessages = [
@@ -2155,45 +2268,45 @@
                     }, 60000); // 1 minuto
                 }, 30000); // 30 segundos
             }
-            
+           
             async function callGemini(systemPrompt, history) {
                 // Usar la variable de entorno de Netlify
                 const apiKey = process.env.GEMINI_API_KEY || '';
-                
+               
                 if (!apiKey) {
                     console.error("API key no configurada");
                     throw new Error("API key no configurada");
                 }
-                
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+               
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
                 const payload = { contents: history };
-                
+               
                 if (systemPrompt) {
                     payload.systemInstruction = { parts: [{ text: systemPrompt }] };
                 }
-                
+               
                 try {
                     const response = await fetch(apiUrl, { 
                         method: 'POST', 
                         headers: { 'Content-Type': 'application/json' }, 
                         body: JSON.stringify(payload) 
                     });
-                    
+                   
                     if (!response.ok) {
                         const errorBody = await response.text().catch(() => 'Could not read error body');
                         console.error("API Error Details:", { status: response.status, body: errorBody });
                         throw new Error(`API Error: ${response.status} ${response.statusText}`);
                     }
-                    
+                   
                     const result = await response.json();
-                    
+                   
                     if (!result.candidates || result.candidates.length === 0 || 
                         !result.candidates[0].content || !result.candidates[0].content.parts || 
                         result.candidates[0].content.parts.length === 0) {
                         console.error("Invalid API response structure:", result);
                         throw new Error("Invalid API response structure");
                     }
-                    
+                   
                     return result.candidates[0].content.parts[0].text;
                 } catch (error) {
                     console.error("Error in callGemini:", error);
@@ -2209,16 +2322,16 @@
 
                 addMessage(userText, 'user');
                 chatInputField.value = '';
-                
+               
                 if (isWaitingForName) {
                     addMessage('', 'bot', true);
                     const nameValidationPrompt = `Analiza la siguiente respuesta a la pregunta "¿Con quién tengo el gusto?": "${userText}". Determina si es un nombre de persona plausible y respetuoso. Considera el "albur" y doble sentido del español de México. Responde únicamente con "VALID" si es un nombre apropiado, o "INVALID" si es una broma, albur, o claramente no es un nombre.`;
-                    
+                   
                     try {
                         const validationHistory = [...chatHistory, { role: 'user', parts: [{ text: userText }] }];
                         const validationResult = await callGemini(nameValidationPrompt, validationHistory);
                         document.getElementById('loading-indicator')?.remove();
-                        
+                       
                         if (validationResult && validationResult.trim().toUpperCase() === 'VALID') {
                             customerName = userText;
                             isWaitingForName = false;
@@ -2242,7 +2355,7 @@
                     }
                     return;
                 }
-                
+               
                 addMessage('', 'bot', true);
                 chatHistory.push({ role: 'user', parts: [{ text: userText }] });
 
@@ -2302,7 +2415,7 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     setInactivityTimers();
                 }
             }
-            
+           
             // Event listeners for chat
             chatBubble.addEventListener('click', toggleChatWidget);
             minimizeChat.addEventListener('click', minimizeChatWidget);
@@ -2354,7 +2467,7 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
             // Carousel navigation
             let scrollAmount = 0;
             const cardWidth = 320 + 24; // Ancho de tarjeta + espacio
-            
+           
             carouselPrev.addEventListener('click', () => {
                 scrollAmount -= cardWidth;
                 if (scrollAmount < 0) {
@@ -2368,7 +2481,7 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     behavior: 'smooth'
                 });
             });
-            
+           
             carouselNext.addEventListener('click', () => {
                 scrollAmount += cardWidth;
                 if (scrollAmount > breedGallery.scrollWidth - breedCarousel.clientWidth) {
@@ -2382,7 +2495,7 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     behavior: 'smooth'
                 });
             });
-            
+           
             // Actualizar scrollAmount cuando el usuario se desplaza manualmente
             breedCarousel.addEventListener('scroll', () => {
                 scrollAmount = breedCarousel.scrollLeft;
@@ -2395,9 +2508,9 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'nueva-zelanda': { 
                         title: 'Nueva Zelanda', 
                         images: [
-                            'assets/Nuevazelanda/imagen1.png', 
-                            'assets/Nuevazelanda/imagen2.png',
-                            'assets/Nuevazelanda/imagen3.png'
+                            'assets/Nueva Zelanda/imagen1.png', 
+                            'assets/Nueva Zelanda/imagen2.png',
+                            'assets/Nueva Zelanda/imagen3.png'
                         ], 
                         description: 'El conejo de Nueva Zelanda es una de las razas de conejos grandes más populares. Originario de Estados Unidos, a pesar de su nombre, se caracteriza por su cuerpo robusto y bien musculoso. Su pelaje es corto, denso y brillante, con colores que van del blanco al rojo. Son conocidos por su temperamento dócil y tranquilo, lo que los convierte en excelentes mascotas familiares.', 
                         characteristics: [
@@ -2517,12 +2630,12 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'californiano': 'medianas', 
                     'chinchilla': 'medianas', 
                     'mariposa': 'medianas', 
-                    'belier-frances': 'grandes', 
+                    'belier-frances': 'grandes',
                     'enano-holandes': 'pequenas', 
                     'cabeza-leon': 'pequenas' 
                 };
                 gallery.innerHTML = '';
-                
+               
                 // Crear las tarjetas iniciales
                 Object.keys(breeds).forEach(key => {
                     const breed = breeds[key];
@@ -2556,14 +2669,14 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     `;
                     gallery.appendChild(card);
                 });
-                
+               
                 // Duplicar las tarjetas para el efecto infinito
                 const breedCards = document.querySelectorAll('.breed-card');
                 breedCards.forEach(card => {
                     const clone = card.cloneNode(true);
                     gallery.appendChild(clone);
                 });
-                
+               
                 // Añadir event listeners para los botones de detalles
                 document.querySelectorAll('.view-details').forEach(button => {
                     button.addEventListener('click', function(e) {
@@ -2646,8 +2759,11 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
             }
 
             accordionHeaders.forEach(header => header.addEventListener('click', function() {
+                const item = this.parentElement;
                 const content = this.nextElementSibling;
                 const icon = this.querySelector('i');
+                
+                item.classList.toggle('open');
                 content.classList.toggle('active');
                 icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
             }));
@@ -2657,7 +2773,6 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('is-visible');
-                            // Añadir animación de entrada
                             entry.target.style.animation = 'fadeUp 0.8s ease-out forwards';
                         }
                     });
