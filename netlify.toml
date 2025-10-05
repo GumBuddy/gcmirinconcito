@@ -1,0 +1,10 @@
+# Archivo de configuración para Netlify
+
+# Configuración de construcción
+[build]
+  # Directorio donde se encuentran tus funciones serverless
+  functions = "netlify/functions"
+
+# Plugin para instalar dependencias de las funciones
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
