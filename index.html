@@ -2020,6 +2020,20 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Debug: surface if `process` was accidentally injected into the browser (should be undefined)
+            try {
+                console.info('Runtime check - typeof process ->', typeof process);
+                if (typeof process !== 'undefined') {
+                    console.warn('Unexpected global `process` found in browser environment. This may indicate a build or script leak:', process);
+                }
+            } catch (e) {
+                console.warn('Could not check `process` presence safely:', e);
+            }
+
+            // Global handler to capture unhandled promise rejections and give more context
+            window.addEventListener('unhandledrejection', function (ev) {
+                console.error('Unhandled promise rejection:', ev.reason, ev);
+            });
             // General page navigation and UI elements
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page-content');
@@ -2310,7 +2324,11 @@
            
             async function callGemini(systemPrompt, history) {
                 // Cliente: solicita al endpoint serverless que haga la llamada a Gemini con la API key en el servidor.
-                try {
+                let attempt = 0;
+                const maxAttempts = 2;
+                while (true) {
+                    try {
+                        attempt++;
                     const userMessage = history && history.length ? history[history.length - 1].parts?.map(p => p.text).join(' ') : '';
                     const resp = await fetch('/.netlify/functions/gemini', {
                         method: 'POST',
@@ -2318,21 +2336,49 @@
                         body: JSON.stringify({ userMessage, context: systemPrompt })
                     });
 
-                    if (!resp.ok) {
+                        if (!resp.ok) {
                         const text = await resp.text().catch(() => 'no body');
                         console.error('Proxy function error', resp.status, text);
                         throw new Error('Proxy function error');
                     }
 
-                    const data = await resp.json();
-                    if (!data || typeof data.reply !== 'string') {
-                        console.error('Invalid proxy response', data);
-                        throw new Error('Invalid proxy response');
+                        const contentType = resp.headers.get('content-type') || '';
+                        console.info(`callGemini: resp.status=${resp.status}, content-type=${contentType}`);
+                        const raw = await resp.text();
+                        console.info('callGemini: raw response body (first 1k chars):', raw.slice(0, 1024));
+                        let data;
+                        try {
+                            data = raw ? JSON.parse(raw) : null;
+                        } catch (parseErr) {
+                            console.error('callGemini: failed to parse JSON response:', parseErr, '\nraw:', raw);
+                            throw parseErr;
+                        }
+                        if (!data || typeof data.reply !== 'string') {
+                            console.error('Invalid proxy response', data);
+                            throw new Error('Invalid proxy response');
+                        }
+                        return data.reply;
+                    } catch (error) {
+                        const isChannelClosed = error && error.message && error.message.includes('message channel closed');
+                        console.error(`callGemini attempt ${attempt} failed:`, error);
+                        if (isChannelClosed && attempt < maxAttempts) {
+                            // small backoff and retry once
+                            await new Promise(r => setTimeout(r, 350));
+                            console.warn('Retrying callGemini due to transient message-channel close...');
+                            continue;
+                        }
+
+                        // Extra diagnostics for ReferenceError: process is not defined
+                        try {
+                            console.info('Diagnostics - typeof process:', typeof process);
+                            if (typeof process !== 'undefined') console.info('Diagnostics - process keys:', Object.keys(process || {}));
+                        } catch (diagErr) {
+                            console.warn('Could not run diagnostics for callGemini error:', diagErr);
+                        }
+                        const wrapped = new Error('callGemini failed: ' + (error && error.message ? error.message : String(error)));
+                        wrapped.original = error;
+                        throw wrapped;
                     }
-                    return data.reply;
-                } catch (error) {
-                    console.error('Error in callGemini (client):', error);
-                    throw error;
                 }
             }
 

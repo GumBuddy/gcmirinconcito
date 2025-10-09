@@ -4,10 +4,17 @@
 try {
   const mod = require('./gemini/gemini.js');
   if (mod && typeof mod.handler === 'function') {
-    exports.handler = mod.handler;
+    // Wrap handler to add an invocation log (helps debugging in netlify dev)
+    exports.handler = async (event, context) => {
+      console.log('Outer gemini wrapper invoked - path:', event.path || event.rawUrl || 'unknown');
+      return mod.handler(event, context);
+    };
   } else if (typeof mod === 'function') {
     // support default export
-    exports.handler = mod;
+    exports.handler = async (event, context) => {
+      console.log('Outer gemini wrapper invoked - path:', event.path || event.rawUrl || 'unknown');
+      return mod(event, context);
+    };
   } else {
     throw new Error('Nested gemini module does not export a handler');
   }
