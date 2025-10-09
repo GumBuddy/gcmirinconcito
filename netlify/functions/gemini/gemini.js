@@ -1,4 +1,13 @@
-const fetch = require('node-fetch');
+// Use global fetch when available (Node 18+ / runtime), otherwise try to require node-fetch as a fallback.
+let fetchLib = (typeof fetch === 'function') ? fetch : null;
+if (!fetchLib) {
+  try {
+    // node-fetch v2 supports CommonJS require
+    fetchLib = require('node-fetch');
+  } catch (e) {
+    console.warn('node-fetch not available and global fetch is undefined. Requests will fail unless node runtime provides fetch.');
+  }
+}
 
 exports.handler = async (event, context) => {
   try {
@@ -19,7 +28,11 @@ exports.handler = async (event, context) => {
     const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     
     // Realizar la solicitud a la API de Gemini
-    const response = await fetch(apiUrl, {
+    if (!fetchLib) {
+      throw new Error('No fetch implementation available in the function runtime. Install node-fetch or use a newer Node runtime with global fetch.');
+    }
+
+    const response = await fetchLib(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
