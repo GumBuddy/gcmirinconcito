@@ -72,6 +72,12 @@
         header.header-hidden {
             transform: translateY(-100%);
         }
+
+        /* --- TAREA 3: CORRECCIÓN DE CONTRASTE EN NAV (MODO OSCURO) --- */
+        .dark-theme .header-nav.bg-white\/80 {
+            background-color: rgba(27, 36, 56, 0.8); /* Usa --bg-secondary con opacidad */
+        }
+        /* --- FIN TAREA 3 --- */
         
         /* Animaciones personalizadas */
         @keyframes float {
@@ -218,8 +224,8 @@
         /* Botón flotante mejorado */
         .float-button { 
             position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
+            bottom: 30px;
+            right: 110px; /* Movido a la izquierda de la burbuja del chat */
             width: 60px; 
             height: 60px; 
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
@@ -543,8 +549,8 @@
         /* Estilos del Chatbot (mejoras visuales) */
         .chat-bubble { 
             position: fixed; 
-            bottom: 100px; 
-            right: 30px; 
+            bottom: 30px; /* Alineado con el botón de volver arriba */
+            right: 30px;
             width: 65px; 
             height: 65px; 
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
@@ -576,8 +582,8 @@
         }
         .chat-widget { 
             position: fixed; 
-            bottom: 170px; 
-            right: 30px; 
+            bottom: 110px; /* Ajustado para que no se superponga con los botones */
+            right: 30px;
             width: 90%; 
             max-width: 420px; 
             height: 70%; 
@@ -1061,11 +1067,11 @@
             line-height: 1.7;
         }
         .price-tag {
-            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-tertiary) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
             border-radius: 12px;
             padding: 12px 18px;
             font-weight: 600;
-            color: var(--primary);
+            color: white;
             display: inline-block;
             box-shadow: 0 5px 15px var(--shadow-color);
         }
@@ -1122,6 +1128,30 @@
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        .dark-theme .section-title,
+        .dark-theme .policy-header-visual h2,
+        .dark-theme .service-content h3 {
+            color: var(--accent); /* Dorado para títulos en modo oscuro */
+        }
+
+        .dark-theme .policy-header-visual p {
+            color: var(--text-secondary); /* Gris claro para el párrafo en modo oscuro */
+        }
+
+        /* --- TAREA: MEJORA DE CONTRASTE EN MODO OSCURO (SECCIÓN FIDELIDAD) --- */
+        .dark-theme .fidelidad-section h3 {
+            color: var(--accent); /* Dorado para el título "¿Cómo funciona?" */
+        }
+
+        .dark-theme .fidelidad-section ul, .dark-theme .fidelidad-section strong {
+            color: var(--accent); /* Dorado para la lista y los elementos strong */
+        }
+        /* --- FIN TAREA --- */
+
+        .dark-theme .accordion-header h3 {
+            color: var(--text-primary); /* Blanco suave para los títulos del acordeón en modo oscuro */
         }
 
         .accordion-item {
@@ -1290,7 +1320,7 @@
             box-shadow: 0 10px 30px var(--shadow-color);
         }
         .reward-table thead {
-            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-tertiary) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
         }
         .reward-table th {
             padding: 20px;
@@ -1434,29 +1464,35 @@
         .card-hover-effect:hover {
             transform: translateY(-8px);
         }
+        .hero-banner-bg {
+            background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); /* Reemplaza con tu imagen optimizada */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 <body class="text-dark-text">
-    <div class="bg-primary text-white p-4 text-center shadow-lg sticky top-0 z-50">
-        <div class="banner max-w-7xl mx-auto">
-            <span class="banner-text">¿Buscando una mascota premium? →</span>
-            <a id="whatsapp-banner" href="https://wa.me/529811579841?text=Estoy%20interesado%20en%20sus%20mascotas%20premium." target="_blank" class="banner-button">
-                <i class="fab fa-whatsapp mr-2"></i> Contactar por WhatsApp
-            </a>
-        </div>
+    <div class="banner-container">
+    <div class="banner max-w-7xl mx-auto">
+        <span class="banner-text">¿Buscando una mascota premium? →</span>
+        <a id="whatsapp-banner" href="https://wa.me/529811579841?text=Estoy%20interesado%20en%20sus%20mascotas%20premium." target="_blank" class="banner-button">
+            <i class="fab fa-whatsapp mr-2"></i> Contactar por WhatsApp
+        </a>
     </div>
+</div>
 
     <header id="main-header" class="header-nav bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 nav-link" data-target="inicio">
-                <div class="footer-logo">GC</div>
+                <img src="assets/images/Logo.svg" alt="GCMiRinconcito Logo" class="w-16 h-16">
                 <span class="text-3xl font-bold text-primary font-serif">GCMiRinconcito</span>
             </a>
             <div class="hidden md:flex items-center space-x-10">
-                <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg" data-target="inicio">
+                <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg active" data-target="inicio">
                     <i class="fas fa-home mr-2"></i> Inicio
                 </a>
-                <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg active" data-target="razas">
+                <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg" data-target="razas">
                     <i class="fas fa-paw mr-2"></i> Razas
                 </a>
                 <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg" data-target="servicios">
@@ -1481,10 +1517,10 @@
             </div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg" data-target="inicio">
+            <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg active" data-target="inicio">
                 <i class="fas fa-home mr-2"></i> Inicio
             </a>
-            <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg active" data-target="razas">
+            <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg" data-target="razas">
                 <i class="fas fa-paw mr-2"></i> Razas
             </a>
             <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg" data-target="servicios">
@@ -1535,9 +1571,9 @@
     </div>
 
     <main class="container mx-auto px-6 py-10 md:py-20">
-        <section id="inicio" class="page-content">
+        <section id="inicio" class="page-content active">
             <div class="hero-section animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
-                <div class="h-96 md:h-[500px] rounded-2xl overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');">
+                <div class="h-96 md:h-[500px] rounded-2xl overflow-hidden" style="background-image: url('assets/images/Banner-hero.png'); background-size: cover; background-position: center;">
                     <div class="hero-overlay">
                         <div class="hero-content">
                             <h1 class="hero-title font-serif">Granja Cunícola Mi Rinconcito</h1>
@@ -1588,17 +1624,10 @@
             </div>
         </section>
 
-        <section id="razas" class="page-content active">
+        <section id="razas" class="page-content">
             <div class="text-center animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
                 <h2 class="section-title font-serif">Nuestras Razas Premium</h2>
                 <p class="section-subtitle">Cada ejemplar es un testimonio de nuestra dedicación a la pureza genética, la salud y un temperamento excepcional.</p>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-3 mb-8 animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
-                <button class="filter-btn px-5 py-3 rounded-full bg-light text-medium-text hover:bg-primary hover:text-white text-lg active" data-filter="all">Todas las Razas</button>
-                <button class="filter-btn px-5 py-3 rounded-full bg-light text-medium-text hover:bg-primary hover:text-white text-lg" data-filter="pequenas">Razas Pequeñas</button>
-                <button class="filter-btn px-5 py-3 rounded-full bg-light text-medium-text hover:bg-primary hover:text-white text-lg" data-filter="medianas">Razas Medianas</button>
-                <button class="filter-btn px-5 py-3 rounded-full bg-light text-medium-text hover:bg-primary hover:text-white text-lg" data-filter="grandes">Razas Grandes</button>
             </div>
 
             <div class="relative">
@@ -1695,7 +1724,7 @@
         </section>
 
         <section id="fidelidad" class="page-content">
-            <div class="bg-white p-12 rounded-2xl shadow-xl animate-on-scroll">
+            <div class="bg-blue p-12 rounded-2xl shadow-xl animate-on-scroll">
                 <div class="text-center">
                     <h2 class="section-title font-serif">Club Premium GCMiRinconcito</h2>
                     <p class="text-3xl font-semibold text-accent">Recompensamos tu lealtad.</p>
@@ -1706,7 +1735,7 @@
                 </div>
 
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div class="animate-on-scroll">
+                    <div class="animate-on-scroll fidelidad-section">
                         <h3 class="text-3xl font-semibold mb-6 text-primary">¿Cómo funciona?</h3>
                         <ul class="space-y-5 text-medium-text text-lg">
                             <li class="flex items-start">
@@ -1732,7 +1761,7 @@
                         </ul>
                     </div>
                     <div class="animate-on-scroll" style="transition-delay: 150ms;">
-                        <img src="https://images.unsplash.com/photo-1571566882372-1598d88abd90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Recompensas" class="rounded-2xl shadow-xl">
+                        <img src="assets/images/premio.png" alt="Recompensas" class="rounded-2xl shadow-xl">
                     </div>
                 </div>
 
@@ -1782,7 +1811,7 @@
             </div>
         </section>
        
-        <section id="politicas" class="page-content">
+        <section id="politicas" class="page-content text-center">
             <div class="policy-header-visual animate-on-scroll">
                 <i class="fas fa-shield-alt icon"></i>
                 <h2>Tu confianza es nuestra prioridad</h2>
@@ -1791,12 +1820,12 @@
             
             <div class="space-y-8">
                 <div class="accordion-item animate-on-scroll">
-                    <button class="accordion-header">
+                    <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
-                           <span class="text-2xl mr-4" style="color: var(--accent);">🚚</span>
-                           <h3>Política de Envíos y Entregas</h3>
+                           <span class="text-2xl mr-4 text-center" style="color: var(--accent);">🚚</span>
+                            <h3>Política de Envíos y Entregas</h3>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down ml-4"></i>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
@@ -1823,12 +1852,12 @@
                 </div>
 
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 100ms;">
-                    <button class="accordion-header">
+                    <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
-                           <span class="text-2xl mr-4" style="color: var(--accent);">📦</span>
+                           <span class="text-2xl mr-4 text-center" style="color: var(--accent);">📦</span>
                            <h3>Política de Apartado y Preventa</h3>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down ml-4"></i>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
@@ -1849,12 +1878,12 @@
                 </div>
 
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 200ms;">
-                    <button class="accordion-header">
+                    <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
-                           <span class="text-2xl mr-4" style="color: var(--accent);">💸</span>
+                           <span class="text-2xl mr-4 text-center" style="color: var(--accent);">💸</span>
                            <h3>Proceso de Devolución de Importes</h3>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down ml-4"></i>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
@@ -1871,12 +1900,12 @@
                 </div>
 
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 300ms;">
-                    <button class="accordion-header">
+                    <button class="accordion-header justify-center w-full">
                          <div class="flex items-center">
-                           <span class="text-2xl mr-4" style="color: var(--accent);">🩺</span>
+                           <span class="text-2xl mr-4 text-center" style="color: var(--accent);">🩺</span>
                            <h3>Garantía de Bienestar "GRAMIR" (Sustitución)</h3>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down ml-4"></i>
                     </button>
                     <div class="accordion-content">
                        <div class="accordion-content-inner">
@@ -1895,12 +1924,12 @@
                 </div>
                 
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 400ms;">
-                    <button class="accordion-header">
+                    <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
-                           <span class="text-2xl mr-4" style="color: var(--accent);">💰</span>
+                           <span class="text-2xl mr-4 text-center" style="color: var(--accent);">💰</span>
                            <h3>Garantía de Reembolso Total</h3>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down ml-4"></i>
                     </button>
                     <div class="accordion-content">
                          <div class="accordion-content-inner">
@@ -1925,12 +1954,12 @@
                 </div>
 
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 500ms;">
-                    <button class="accordion-header">
+                    <button class="accordion-header justify-center w-full">
                          <div class="flex items-center">
-                           <span class="text-2xl mr-4" style="color: var(--accent);">📜</span>
+                           <span class="text-2xl mr-4 text-center" style="color: var(--accent);">📜</span>
                            <h3>Cláusula General</h3>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down ml-4"></i>
                     </button>
                     <div class="accordion-content">
                          <div class="accordion-content-inner">
@@ -1953,7 +1982,7 @@
         <div class="container mx-auto px-6 py-12">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <a href="#" class="flex items-center space-x-3 mb-6 md:mb-0 nav-link" data-target="inicio">
-                    <div class="footer-logo">GC</div>
+                    <img src="assets/images/Logo.svg" alt="GCMiRinconcito Logo" class="w-16 h-16">
                     <span class="text-3xl font-bold font-serif">GCMiRinconcito</span>
                 </a>
                 <div class="flex space-x-6">
@@ -2467,6 +2496,7 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
             // Carousel navigation
             let scrollAmount = 0;
             const cardWidth = 320 + 24; // Ancho de tarjeta + espacio
+            let autoScrollInterval = null; // Variable para el intervalo de auto-scroll
            
             carouselPrev.addEventListener('click', () => {
                 scrollAmount -= cardWidth;
@@ -2501,16 +2531,42 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                 scrollAmount = breedCarousel.scrollLeft;
             });
 
-            function createBreedCards() {
+            // --- TAREA: AUTOPLAY DEL CARRUSEL DE RAZAS ---
+            function startAutoScroll() {
+                stopAutoScroll(); // Detener cualquier intervalo anterior
+                autoScrollInterval = setInterval(() => {
+                    // Simular clic en el botón "siguiente"
+                    carouselNext.click();
+                }, 5000); // Cada 5 segundos
+            }
+            
+            function stopAutoScroll() {
+                clearInterval(autoScrollInterval);
+            }
+            
+            // Pausar al pasar el mouse sobre el carrusel
+            breedCarousel.addEventListener('mouseenter', stopAutoScroll);
+            carouselPrev.addEventListener('mouseenter', stopAutoScroll);
+            carouselNext.addEventListener('mouseenter', stopAutoScroll);
+            
+            // Reanudar cuando el mouse sale
+            breedCarousel.addEventListener('mouseleave', startAutoScroll);
+            carouselPrev.addEventListener('mouseleave', startAutoScroll);
+            carouselNext.addEventListener('mouseleave', startAutoScroll);
+
+            // Iniciar el auto-scroll al cargar la página
+            startAutoScroll();
+            // --- FIN TAREA ---
+
+            function setupBreedSection() {
                 const gallery = document.querySelector('.breed-gallery');
                 if (!gallery) return;
-                const breeds = {
+                const allBreeds = {
                     'nueva-zelanda': { 
                         title: 'Nueva Zelanda', 
                         images: [
-                            'assets/Nueva Zelanda/imagen1.png', 
-                            'assets/Nueva Zelanda/imagen2.png',
-                            'assets/Nueva Zelanda/imagen3.png'
+                            'assets/images/nueva-zelanda-1.png', 
+                            'assets/images/nueva-zelanda-2.png'
                         ], 
                         description: 'El conejo de Nueva Zelanda es una de las razas de conejos grandes más populares. Originario de Estados Unidos, a pesar de su nombre, se caracteriza por su cuerpo robusto y bien musculoso. Su pelaje es corto, denso y brillante, con colores que van del blanco al rojo. Son conocidos por su temperamento dócil y tranquilo, lo que los convierte en excelentes mascotas familiares.', 
                         characteristics: [
@@ -2525,9 +2581,9 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'californiano': { 
                         title: 'Californiano', 
                         images: [
-                            'assets/Californiano/imagen1.png', 
-                            'assets/Californiano/imagen2.png',
-                            'assets/Californiano/imagen3.png'
+                            'assets/images/californiano-1.png', 
+                            'assets/images/californiano-2.png',
+                            'assets/images/californiano-3.png'
                         ], 
                         description: 'El conejo Californiano es una raza desarrollada en California, Estados Unidos, a principios del siglo XX. Es el resultado del cruce entre las razas Nueva Zelanda y Chinchilla. Se caracteriza por su cuerpo mediano y bien proporcionado, con un pelaje blanco excepto en las extremidades, la cola, las orejas y la nariz, que son de color marrón oscuro o negro.', 
                         characteristics: [
@@ -2542,9 +2598,10 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'chinchilla': { 
                         title: 'Chinchilla', 
                         images: [
-                            'assets/Chinchilla/imagen1.png', 
-                            'assets/Chinchilla/imagen2.png',
-                            'assets/Chinchilla/imagen3.png'
+                            'assets/images/chinchilla-1.png', 
+                            'assets/images/chinchilla-2.png',
+                            'assets/images/chinchilla-3.png',
+                            'assets/images/chinchilla-4.png'
                         ], 
                         description: 'El conejo Chinchilla es una raza originaria de Francia, desarrollada a finales del siglo XIX. Su nombre se debe al parecido de su pelaje con el de la chinchilla. Se caracteriza por su cuerpo mediano, orejas erectas y un pelaje denso y suave con un color gris plateado característico.', 
                         characteristics: [
@@ -2559,9 +2616,9 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'mariposa': { 
                         title: 'Mariposa', 
                         images: [
-                            'assets/Mariposa/imagen1.png', 
-                            'assets/Mariposa/imagen2.png',
-                            'assets/Mariposa/imagen3.png'
+                            'assets/images/mariposa-1.png', 
+                            'assets/images/mariposa-2.png',
+                            'assets/images/mariposa-3.png'
                         ], 
                         description: 'El conejo Mariposa es una de las razas más antiguas y distintivas, originaria de Inglaterra. Su nombre proviene del patrón de su pelaje, que recuerda alas de mariposa. Se caracteriza por su cuerpo mediano, orejas erectas y un patrón de color único.', 
                         characteristics: [
@@ -2576,9 +2633,9 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'belier-frances': { 
                         title: 'Belier Francés', 
                         images: [
-                            'assets/Belier Frances/imagen1.png', 
-                            'assets/Belier Frances/imagen2.png',
-                            'assets/Belier Frances/imagen3.png'
+                            'assets/images/belier-frances-1.png', 
+                            'assets/images/belier-frances-2.png',
+                            'assets/images/belier-frances-3.png'
                         ], 
                         description: 'El Belier Francés es una de las razas de conejos más grandes y reconocibles, originaria de Francia. Se caracteriza por su cabeza voluminosa, orejas largas y caídas que pueden medir hasta 38 cm, y un cuerpo robusto.', 
                         characteristics: [
@@ -2593,9 +2650,9 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'enano-holandes': { 
                         title: 'Enano Holandés', 
                         images: [
-                            'assets/Enano Holandes/imagen1.png', 
-                            'assets/Enano Holandes/imagen2.png',
-                            'assets/Enano Holandes/imagen3.png'
+                            'assets/images/enano-holandes-1.png', 
+                            'assets/images/enano-holandes-2.png',
+                            'assets/images/enano-holandes-3.png'
                         ], 
                         description: 'El Enano Holandés es la raza de conejo más pequeña del mundo, originaria de los Países Bajos. Se caracteriza por su cuerpo compacto, cabeza redonda y orejas cortas y erectas.', 
                         characteristics: [
@@ -2610,9 +2667,10 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'cabeza-leon': { 
                         title: 'Cabeza de León', 
                         images: [
-                            'assets/Cabeza de Leon/imagen1.png', 
-                            'assets/Cabeza de Leon/imagen2.png',
-                            'assets/Cabeza de Leon/imagen3.png'
+                            'assets/images/cabeza-de-leon-1.png', 
+                            'assets/images/cabeza-de-leon-2.png',
+                            'assets/images/cabeza-de-leon-3.png',
+                            'assets/images/cabeza-de-leon-4.png'
                         ], 
                         description: 'El conejo Cabeza de León es una raza de origen belga, reconocida por su distintiva melena alrededor de la cabeza que recuerda a la de un león. Se caracteriza por su cuerpo pequeño y compacto, orejas erectas y un pelaje largo y denso.', 
                         characteristics: [
@@ -2635,110 +2693,112 @@ COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
                     'cabeza-leon': 'pequenas' 
                 };
                 gallery.innerHTML = '';
-               
-                // Crear las tarjetas iniciales
-                Object.keys(breeds).forEach(key => {
-                    const breed = breeds[key];
-                    const category = categories[key];
-                    const card = document.createElement('div');
-                    card.className = 'breed-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll';
-                    card.dataset.category = category;
-                    card.dataset.breed = key;
-                    card.innerHTML = `
-                        <div class="relative h-56 overflow-hidden">
-                            <img src="${breed.images[0]}" alt="${breed.title}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                            <div class="absolute top-4 right-4 bg-accent text-primary text-sm font-bold px-4 py-2 rounded-full">${category.toUpperCase()}</div>
-                        </div>
-                        <div class="breed-card-content">
-                            <h3 class="breed-card-title">${breed.title}</h3>
-                            <p class="breed-card-description">${breed.description.substring(0, 120)}...</p>
-                            <div class="breed-card-characteristics">
-                                ${breed.characteristics.slice(0, 3).map(c => `
-                                    <div class="breed-card-characteristic">
-                                        <i class="fas fa-check-circle"></i>
-                                        <strong>${c.name}:</strong> ${c.value}
-                                    </div>
-                                `).join('')}
+
+                 function renderCards(filter = 'all') {
+                    const allBreedKeys = Object.keys(allBreeds);
+
+                    const createCardHTML = (key) => {
+                        const breed = allBreeds[key];
+                        const category = categories[key];
+                        return `
+                        <div class="breed-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll" data-category="${category}" data-breed="${key}">
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="${breed.images[0]}" alt="${breed.title}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                                <div class="absolute top-4 right-4 bg-accent text-primary text-sm font-bold px-4 py-2 rounded-full">${category.toUpperCase()}</div>
                             </div>
-                            <div class="breed-card-footer">
-                                <button class="view-details btn-accent w-full text-center" data-breed="${key}">
-                                    <i class="fas fa-info-circle mr-2"></i> Ver detalles completos
-                                </button>
+                            <div class="breed-card-content">
+                                <h3 class="breed-card-title">${breed.title}</h3>
+                                <p class="breed-card-description">${breed.description.substring(0, 120)}...</p>
+                                <div class="breed-card-characteristics">
+                                    ${breed.characteristics.slice(0, 3).map(c => `
+                                        <div class="breed-card-characteristic">
+                                            <i class="fas fa-check-circle"></i>
+                                            <strong>${c.name}:</strong> ${c.value}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="breed-card-footer">
+                                    <button class="view-details btn-accent w-full text-center" data-breed="${key}">
+                                        <i class="fas fa-info-circle mr-2"></i> Ver detalles completos
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                    gallery.appendChild(card);
-                });
-               
-                // Duplicar las tarjetas para el efecto infinito
-                const breedCards = document.querySelectorAll('.breed-card');
-                breedCards.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    gallery.appendChild(clone);
-                });
-               
-                // Añadir event listeners para los botones de detalles
-                document.querySelectorAll('.view-details').forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const breedId = this.dataset.breed;
-                        const breed = breeds[breedId];
-                        if(breed) {
+                        </div>`;
+                    };
+
+                    let cardsHTML = allBreedKeys.map(createCardHTML).join('');
+                    // Duplicar las tarjetas filtradas para el efecto infinito
+                    gallery.innerHTML = cardsHTML + cardsHTML;
+
+                    // Calcular el número total de tarjetas (duplicadas)
+                    const newCardCount = allBreedKeys.length * 2;
+                    const cardWidth = 320; // Ancho de cada tarjeta
+                    const gap = 24; // Espacio entre tarjetas
+                    const totalWidth = newCardCount * cardWidth + (newCardCount - 1) * gap;
+                    gallery.style.width = `${totalWidth}px`;
+
+                    // Reiniciar el scroll del carrusel
+                    breedCarousel.scrollLeft = 0;
+                    scrollAmount = 0;
+
+                    // Re-asignar los event listeners para los botones de "Ver detalles"
+                    gallery.querySelectorAll('.view-details').forEach(button => {
+                        button.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            const breedId = this.dataset.breed;
+                            const breed = allBreeds[breedId];
+                            if (!breed) return;
+
                             modalTitle.textContent = breed.title;
                             modalBody.innerHTML = `
                                 <div class="mb-8">
                                     <div class="carousel-container">
                                         <div class="carousel-track">
-                                            ${breed.images.map(img => `<div class="carousel-slide" style="background-image: url('${img}')"></div>`).join('')}
-                                        </div>
-                                        <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
-                                        <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
-                                    </div>
-                                    <div class="carousel-indicators">
-                                        ${breed.images.map((_, i) => `<span class="indicator ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
-                                    </div>
-                                </div>
-                                <div class="mb-8">
-                                    <h3 class="text-2xl font-bold mb-4 text-primary">Descripción</h3>
-                                    <p class="text-medium-text text-lg leading-relaxed">${breed.description}</p>
-                                </div>
-                                <div class="mb-8">
-                                    <h3 class="text-2xl font-bold mb-6 text-primary">Características</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        ${breed.characteristics.map(c => `
-                                            <div class="bg-light p-4 rounded-lg border-l-4 border-accent">
-                                                <h4 class="font-semibold text-primary text-lg">${c.name}</h4>
-                                                <p class="text-medium-text">${c.value}</p>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                                <div class="mt-10 text-center">
-                                    <a href="${getWhatsAppLink(`Estoy interesado en la raza ${breed.title}`)}" target="_blank" class="btn-accent text-lg">
-                                        <i class="fab fa-whatsapp mr-2"></i> Consultar por esta raza
-                                    </a>
-                                </div>
-                            `;
+                                             ${breed.images.map(img => `<div class="carousel-slide" style="background-image: url('${img}')"></div>`).join('')}
+                                         </div>
+                                         <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                                         <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+                                     </div>
+                                     <div class="carousel-indicators">
+                                         ${breed.images.map((_, i) => `<span class="indicator ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
+                                     </div>
+                                 </div>
+                                 <div class="mb-8">
+                                     <h3 class="text-2xl font-bold mb-4 text-primary">Descripción</h3>
+                                     <p class="text-medium-text text-lg leading-relaxed">${breed.description}</p>
+                                 </div>
+                                 <div class="mb-8">
+                                     <h3 class="text-2xl font-bold mb-6 text-primary">Características</h3>
+                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                         ${breed.characteristics.map(c => `
+                                             <div class="bg-light p-4 rounded-lg border-l-4 border-accent">
+                                                 <h4 class="font-semibold text-primary text-lg">${c.name}</h4>
+                                                 <p class="text-medium-text">${c.value}</p>
+                                             </div>
+                                         `).join('')}
+                                     </div>
+                                 </div>
+                                 <div class="mt-10 text-center">
+                                     <a href="${getWhatsAppLink(`Estoy interesado en la raza ${breed.title}`)}" target="_blank" class="btn-accent text-lg">
+                                         <i class="fab fa-whatsapp mr-2"></i> Consultar por esta raza
+                                     </a>
+                                 </div>
+                             `;
                             modal.style.display = 'block';
                             initCarousel();
-                        }
+                        });
                     });
-                });
-            }
-            createBreedCards();
+                    
+                    // Forzar un reflow para asegurar que el carrusel se actualice correctamente
+                    gallery.offsetHeight;
+                }
 
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const filter = this.dataset.filter;
-                document.querySelectorAll('.breed-card').forEach(card => {
-                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
-                });
-            }));
-            const allFilterBtn = document.querySelector('[data-filter="all"]');
-            if(allFilterBtn) allFilterBtn.classList.add('active');
+                renderCards(); // Renderizar todas las tarjetas inicialmente
+            }
+            setupBreedSection();
 
             closeModal.addEventListener('click', () => modal.style.display = 'none');
+
             window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 
             function initCarousel() {
