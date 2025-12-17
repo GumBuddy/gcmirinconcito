@@ -1,1494 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GCMiRinconcito - Granja Cunícola Premium</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Favicon -->
     <link rel="icon" href="https://gumbuddy.github.io/gcmirinconcito/assets/favicon.ico" type="image/x-icon">
-    <style>
-        /* Variables CSS para el tema */
-        :root {
-            --bg-primary: #F9FAFB; /* Blanco Suave */
-            --bg-secondary: #FFFFFF; /* Blanco puro */
-            --bg-tertiary: #E9ECEF; /* Gris Perla */
-            --bg-card-hover: #F3F4F6; /* Hover de tarjeta */
-            --bg-card-active: #E9ECEF; /* Activo de tarjeta */
-            --text-primary: #243044; /* Azul Carbón */
-            --text-secondary: #6B7280; /* Gris Medio */
-            --text-tertiary: #D1D5DB; /* Gris Claro */
-            --accent: #E7B93C; /* Dorado Suave */
-            --accent-hover: #F6C84C; /* Amarillo Miel */
-            --accent-active: #CFA034; /* Dorado más oscuro */
-            --primary: #1F2A44; /* Azul Marino Profundo */
-            --primary-hover: #2C3E60; /* Hover de enlaces */
-            --primary-active: #1F2A44; /* Activo de enlaces */
-            --border-color: #D1D5DB; /* Gris Claro */
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --neutral-dark: #3B4258; /* Gris Oscuro para inputs */
-        }
-
-        /* Tema oscuro */
-        .dark-theme {
-            --bg-primary: #0E1628; /* Azul Nocturno */
-            --bg-secondary: #1B2438; /* Azul Grisáceo */
-            --bg-tertiary: #2A3552; /* Hover de tarjeta */
-            --bg-card-hover: #222C44; /* Hover de tarjeta */
-            --bg-card-active: #2A3552; /* Activo de tarjeta */
-            --text-primary: #F9FAFB; /* Blanco Suave */
-            --text-secondary: #D1D5DB; /* Gris Claro */
-            --text-tertiary: #9CA3AF; /* Gris más claro */
-            --accent: #E7B93C; /* Dorado Cálido */
-            --accent-hover: #F6C84C; /* Dorado Brillante */
-            --accent-active: #CFA034; /* Dorado más oscuro */
-            --primary: #1F2A44; /* Azul Marino (mismo que claro) */
-            --primary-hover: #2C3E60; /* Hover de enlaces */
-            --primary-active: #1F2A44; /* Activo de enlaces */
-            --border-color: #2C3550; /* Azul Acero */
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --neutral-dark: #3B4258; /* Gris Oscuro para inputs */
-        }
-
-        /* Aplicar variables a elementos existentes */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-primary);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(231, 185, 60, 0.05) 0%, rgba(231, 185, 60, 0) 20%),
-                linear-gradient(to bottom, var(--bg-primary), var(--bg-tertiary));
-            min-height: 100vh;
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-       
-        /* --- TAREA 2: MEJORA DE NAVEGACIÓN --- */
-        header.header-nav {
-            transition: transform 0.4s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        header.header-hidden {
-            transform: translateY(-100%);
-        }
-
-        /* --- TAREA 3: CORRECCIÓN DE CONTRASTE EN NAV (MODO OSCURO) --- */
-        .dark-theme .header-nav.bg-white\/80 {
-            background-color: rgba(27, 36, 56, 0.8); /* Usa --bg-secondary con opacidad */
-        }
-        /* --- FIN TAREA 3 --- */
-        
-        /* Animaciones personalizadas */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-       
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-       
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-       
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-       
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-       
-        /* Mejoras de navegación */
-        .nav-link.active { 
-            color: var(--accent); 
-            font-weight: 700; 
-            position: relative;
-        }
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            border-radius: 2px;
-            animation: shimmer 2s infinite;
-        }
-       
-        /* Efectos de página */
-        .page-content { 
-            display: none; 
-        }
-        .page-content.active { 
-            display: block; 
-        }
-       
-        /* Mejoras de tarjetas */
-        .card-hover { 
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 0 10px 30px var(--shadow-color);
-            border-radius: 20px;
-            overflow: hidden;
-            background-color: var(--bg-secondary);
-            position: relative;
-            z-index: 1;
-        }
-        .card-hover::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(231, 185, 60, 0.1) 0%, rgba(231, 185, 60, 0) 100%);
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.5s ease;
-        }
-        .card-hover:hover { 
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            background-color: var(--bg-card-hover);
-        }
-        .card-hover:hover::before {
-            opacity: 1;
-        }
-       
-        /* Animaciones de scroll */
-        .animate-on-scroll { 
-            opacity: 0; 
-            transform: translateY(40px); 
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
-        .animate-on-scroll.is-visible { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
-       
-        /* Acordeón mejorado */
-        .accordion-content { 
-            max-height: 0; 
-            overflow: hidden; 
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-        .accordion-content.active { 
-            max-height: 3000px; 
-            transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-       
-        /* Efecto parallax mejorado */
-        .parallax { 
-            background-attachment: fixed; 
-            background-position: center; 
-            background-repeat: no-repeat; 
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-        }
-        .parallax::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(31, 42, 68, 0.8) 0%, rgba(31, 42, 68, 0.4) 100%);
-            z-index: 1;
-        }
-        .parallax > * {
-            position: relative;
-            z-index: 2;
-        }
-       
-        /* Botón flotante mejorado */
-        .float-button { 
-            position: fixed; 
-            bottom: 30px;
-            right: 110px; /* Movido a la izquierda de la burbuja del chat */
-            width: 60px; 
-            height: 60px; 
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: var(--primary); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 24px; 
-            box-shadow: 0 10px 25px rgba(231, 185, 60, 0.4), 0 5px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer; 
-            transition: all 0.4s ease; 
-            z-index: 100; 
-            opacity: 0; 
-            visibility: hidden; 
-        }
-        .float-button.visible { 
-            opacity: 1; 
-            visibility: visible; 
-            animation: float 3s ease-in-out infinite;
-        }
-        .float-button:hover { 
-            transform: scale(1.1) rotate(15deg);
-            background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
-            box-shadow: 0 15px 35px rgba(231, 185, 60, 0.5);
-        }
-       
-        /* Botones de filtro mejorados */
-        .filter-btn { 
-            transition: all 0.4s ease; 
-            border-radius: 50px;
-            padding: 12px 24px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            backdrop-filter: blur(10px);
-            background-color: var(--bg-tertiary);
-            color: var(--text-secondary);
-        }
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-        .filter-btn.active { 
-            color: white;
-            box-shadow: 0 6px 20px rgba(31, 42, 68, 0.3);
-        }
-        .filter-btn.active::before {
-            opacity: 1;
-        }
-        .filter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-       
-        /* Tarjetas de razas mejoradas */
-        .breed-card { 
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            cursor: pointer;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px var(--shadow-color);
-            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            width: 320px;
-            flex-shrink: 0;
-        }
-        .breed-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(31, 42, 68, 0.05) 0%, rgba(31, 42, 68, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: 1;
-        }
-        .breed-card:hover { 
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            background-color: var(--bg-card-hover);
-        }
-        .breed-card:hover::after {
-            opacity: 1;
-        }
-        .breed-card img {
-            transition: transform 0.8s ease;
-        }
-        .breed-card:hover img {
-            transform: scale(1.1);
-        }
-        .breed-card-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            z-index: 2;
-        }
-        .breed-card-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--primary);
-            position: relative;
-        }
-        .breed-card-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            border-radius: 2px;
-        }
-        .breed-card-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-        .breed-card-characteristics {
-            margin-top: auto;
-        }
-        .breed-card-characteristic {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.6rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        .breed-card-characteristic i {
-            color: var(--accent);
-            margin-right: 0.6rem;
-            font-size: 0.8rem;
-        }
-        .breed-card-characteristic strong {
-            color: var(--primary);
-            margin-right: 0.3rem;
-            font-weight: 600;
-        }
-        .breed-card-footer {
-            margin-top: 1.2rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-color);
-        }
-       
-        /* Modal mejorado */
-        .modal { 
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.85); 
-            backdrop-filter: blur(8px);
-            animation: fadeIn 0.4s ease-out; 
-        }
-        .modal-content { 
-            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
-            margin: 3% auto; 
-            padding: 0; 
-            border-radius: 24px; 
-            width: 90%; 
-            max-width: 900px; 
-            max-height: 90vh; 
-            overflow: hidden; 
-            animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 100px rgba(231, 185, 60, 0.1);
-            color: var(--text-primary);
-        }
-        @keyframes slideUp { 
-            from { 
-                transform: translateY(80px); 
-                opacity: 0; 
-            } 
-            to { 
-                transform: translateY(0); 
-                opacity: 1; 
-            } 
-        }
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white; 
-            padding: 25px 30px;
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        .modal-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(231, 185, 60, 0.2) 0%, rgba(231, 185, 60, 0) 60%);
-        }
-        .modal-header h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0;
-            position: relative;
-            z-index: 2;
-        }
-        .modal-body {
-            padding: 30px;
-            max-height: calc(90vh - 150px);
-            overflow-y: auto;
-        }
-        .close-modal { 
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: rgba(255, 255, 255, 0.8); 
-            font-size: 32px; 
-            font-weight: 300; 
-            cursor: pointer; 
-            transition: all 0.3s ease;
-            z-index: 3;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        .close-modal:hover { 
-            color: white; 
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: rotate(90deg);
-        }
-       
-        /* Carrusel mejorado */
-        .carousel-container { 
-            position: relative; 
-            overflow: hidden; 
-            border-radius: 16px; 
-            margin-bottom: 25px;
-            box-shadow: 0 15px 35px var(--shadow-color);
-        }
-        .carousel-track { 
-            display: flex; 
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-        .carousel-slide { 
-            min-width: 100%; 
-            height: 400px; 
-            background-size: cover; 
-            background-position: center;
-        }
-        .carousel-nav { 
-            position: absolute; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            background: rgba(255, 255, 255, 0.9); 
-            color: var(--primary); 
-            border: none; 
-            padding: 15px 20px; 
-            cursor: pointer; 
-            font-size: 20px; 
-            border-radius: 50%; 
-            z-index: 10; 
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(10px);
-        }
-        .carousel-nav:hover { 
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-        .carousel-prev { 
-            left: 20px; 
-        }
-        .carousel-next { 
-            right: 20px; 
-        }
-        .carousel-indicators { 
-            display: flex; 
-            justify-content: center; 
-            margin-top: 20px; 
-            gap: 12px; 
-        }
-        .indicator { 
-            width: 12px; 
-            height: 12px; 
-            border-radius: 50%; 
-            background-color: var(--text-tertiary); 
-            cursor: pointer; 
-            transition: all 0.4s ease;
-        }
-        .indicator.active { 
-            background-color: var(--accent);
-            transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(231, 185, 60, 0.5);
-        }
-        .indicator:hover {
-            background-color: var(--accent);
-        }
-
-        /* Estilos del Chatbot (mejoras visuales) */
-        .chat-bubble { 
-            position: fixed; 
-            bottom: 30px; /* Alineado con el botón de volver arriba */
-            right: 30px;
-            width: 65px; 
-            height: 65px; 
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 26px; 
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 30px rgba(31, 42, 68, 0.2);
-            cursor: pointer; 
-            transition: all 0.4s ease; 
-            z-index: 100; 
-            animation: pulse-slow 2s infinite;
-        }
-        .chat-bubble:hover { 
-            transform: scale(1.15) rotate(15deg);
-            background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 40px rgba(31, 42, 68, 0.3);
-        }
-        @keyframes shake { 
-            10%, 90% { transform: translate3d(-2px, 0, 0); } 
-            20%, 80% { transform: translate3d(4px, 0, 0); } 
-            30%, 50%, 70% { transform: translate3d(-8px, 0, 0); } 
-            40%, 60% { transform: translate3d(8px, 0, 0); } 
-        }
-        .chat-bubble.new-message { 
-            animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both, pulse-slow 2s infinite; 
-        }
-        .chat-widget { 
-            position: fixed; 
-            bottom: 110px; /* Ajustado para que no se superponga con los botones */
-            right: 30px;
-            width: 90%; 
-            max-width: 420px; 
-            height: 70%; 
-            max-height: 550px; 
-            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
-            border-radius: 20px; 
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 0 80px rgba(0, 0, 0, 0.1);
-            z-index: 99; 
-            display: flex; 
-            flex-direction: column; 
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: translateY(30px) scale(0.95); 
-            opacity: 0; 
-            visibility: hidden; 
-            color: var(--text-primary);
-        }
-        .chat-widget.visible { 
-            transform: translateY(0) scale(1); 
-            opacity: 1; 
-            visibility: visible; 
-        }
-        .chat-header { 
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white; 
-            padding: 20px; 
-            border-top-left-radius: 20px; 
-            border-top-right-radius: 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .chat-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(231, 185, 60, 0.2) 0%, rgba(231, 185, 60, 0) 60%);
-        }
-        .chat-header > div {
-            position: relative;
-            z-index: 2;
-        }
-        .chat-messages { 
-            flex-grow: 1; 
-            padding: 20px; 
-            overflow-y: auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            background-image: linear-gradient(to bottom, rgba(249, 250, 251, 0.5), rgba(249, 250, 251, 0.2));
-        }
-        .message { 
-            padding: 12px 18px; 
-            border-radius: 20px; 
-            max-width: 80%; 
-            line-height: 1.6; 
-            animation: fadeInMessage 0.4s ease; 
-            box-shadow: 0 4px 15px var(--shadow-color);
-        }
-        @keyframes fadeInMessage { 
-            from { opacity: 0; transform: translateY(15px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        .message.user { 
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: var(--primary); 
-            align-self: flex-end; 
-            border-bottom-right-radius: 6px;
-            font-weight: 500;
-        }
-        .message.bot { 
-            background-color: var(--bg-tertiary); 
-            color: var(--text-primary); 
-            align-self: flex-start; 
-            border-bottom-left-radius: 6px;
-        }
-        .message.bot ul { 
-            list-style: none; 
-            padding-left: 5px; 
-            margin-top: 10px; 
-        }
-        .message.bot li { 
-            padding-left: 0; 
-            margin-bottom: 6px; 
-            display: flex; 
-            align-items: center; 
-        }
-        .chat-input { 
-            border-top: 1px solid var(--border-color); 
-            padding: 20px; 
-            display: flex; 
-            gap: 15px; 
-            background-color: var(--bg-tertiary);
-        }
-        .chat-input input { 
-            flex-grow: 1; 
-            border: 2px solid var(--border-color); 
-            border-radius: 25px; 
-            padding: 12px 20px; 
-            outline: none; 
-            transition: all 0.3s ease;
-            font-size: 15px;
-            background-color: var(--bg-tertiary);
-            color: var(--text-primary);
-        }
-        .chat-input input:focus { 
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(231, 185, 60, 0.2);
-        }
-        .chat-input button { 
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white; 
-            border: none; 
-            border-radius: 50%; 
-            width: 45px; 
-            height: 45px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 5px 15px rgba(31, 42, 68, 0.3);
-        }
-        .chat-input button:hover { 
-            background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(31, 42, 68, 0.4);
-        }
-        .typing-indicator { 
-            align-self: flex-start; 
-            color: var(--text-tertiary); 
-            font-style: italic; 
-            display: flex; 
-            align-items: center; 
-            padding: 12px 18px; 
-            background-color: var(--bg-tertiary); 
-            border-radius: 20px; 
-            border-bottom-left-radius: 6px; 
-            max-width: 80%; 
-        }
-        .typing-indicator span { 
-            height: 10px; 
-            width: 10px; 
-            background-color: var(--text-tertiary); 
-            border-radius: 50%; 
-            display: inline-block; 
-            margin: 0 3px; 
-            animation: typing 1.4s infinite; 
-        }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing { 
-            0%, 60%, 100% { transform: translateY(0); } 
-            30% { transform: translateY(-8px); } 
-        }
-        .rating-container { 
-            text-align: center; 
-            padding: 20px; 
-            background: linear-gradient(to bottom, var(--bg-tertiary), var(--bg-tertiary));
-            border-radius: 15px; 
-            margin-top: 15px; 
-            animation: fadeIn 0.6s ease; 
-        }
-        .rating-container h4 { 
-            margin-bottom: 15px; 
-            color: var(--primary); 
-            font-weight: 600; 
-            font-size: 1.1rem;
-        }
-        .stars { 
-            display: flex; 
-            justify-content: center; 
-            gap: 8px; 
-            margin-bottom: 15px; 
-        }
-        .star { 
-            font-size: 28px; 
-            color: var(--text-tertiary); 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-        .star:hover, .star.active { 
-            color: var(--accent); 
-            transform: scale(1.2);
-        }
-        .feedback-btn, .reconnect-btn { 
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white; 
-            border: none; 
-            padding: 10px 20px; 
-            border-radius: 25px; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-            font-weight: 600;
-            font-size: 15px;
-        }
-        .feedback-btn:hover, .reconnect-btn:hover { 
-            background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(31, 42, 68, 0.3);
-        }
-        .feedback-message { 
-            text-align: center; 
-            padding: 15px; 
-            border-radius: 10px; 
-            margin-top: 15px; 
-            font-weight: 600; 
-            animation: fadeIn 0.6s ease; 
-            font-size: 15px;
-        }
-        .feedback-success { 
-            background-color: #d1fae5; 
-            color: #065f46; 
-        }
-        .whatsapp-handoff { 
-            display: inline-block; 
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: white; 
-            padding: 14px 24px; 
-            border-radius: 30px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-            font-size: 16px;
-        }
-        .whatsapp-handoff:hover { 
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
-        }
-        .complaint-link { 
-            display: inline-block; 
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white; 
-            padding: 14px 24px; 
-            border-radius: 30px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
-            font-size: 16px;
-        }
-        .complaint-link:hover { 
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4);
-        }
-        .loader-container { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 25px; 
-            gap: 20px; 
-            color: var(--text-secondary); 
-        }
-        .spinner { 
-            width: 50px; 
-            height: 50px; 
-            border: 5px solid var(--bg-tertiary); 
-            border-bottom-color: var(--primary); 
-            border-radius: 50%; 
-            display: inline-block; 
-            box-sizing: border-box; 
-            animation: rotation 1s linear infinite; 
-        }
-        @keyframes rotation { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
-        }
-       
-        /* Estilos para el carrusel de razas */
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .breed-carousel {
-            scroll-behavior: smooth;
-            padding: 0 40px;
-        }
-       
-        /* Mejoras visuales adicionales */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(31, 42, 68, 0.2);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-size: 16px;
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(31, 42, 68, 0.3);
-        }
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-        .btn-accent {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: var(--primary);
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(231, 185, 60, 0.3);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-size: 16px;
-        }
-        .btn-accent::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-        .btn-accent:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(231, 185, 60, 0.4);
-        }
-        .btn-accent:hover::before {
-            opacity: 1;
-        }
-        .feature-card {
-            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px var(--shadow-color);
-            transition: all 0.5s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-        }
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(231, 185, 60, 0.1) 0%, rgba(231, 185, 60, 0) 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12), 0 0 60px rgba(231, 185, 60, 0.1);
-            background-color: var(--bg-card-hover);
-        }
-        .feature-card:hover::after {
-            opacity: 1;
-        }
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            box-shadow: 0 15px 30px rgba(231, 185, 60, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-        .service-card {
-            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px var(--shadow-color);
-            transition: all 0.5s ease;
-            height: 100%;
-            display: flex;
-            position: relative;
-            overflow: hidden;
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent), var(--accent-hover));
-        }
-        .service-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(31, 42, 68, 0.05) 0%, rgba(31, 42, 68, 0) 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12), 0 0 60px rgba(31, 42, 68, 0.1);
-            background-color: var(--bg-card-hover);
-        }
-        .service-card:hover::after {
-            opacity: 1;
-        }
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 25px;
-            flex-shrink: 0;
-            box-shadow: 0 15px 30px rgba(231, 185, 60, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-        .service-content h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        .service-content p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
-        .price-tag {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            border-radius: 12px;
-            padding: 12px 18px;
-            font-weight: 600;
-            color: white;
-            display: inline-block;
-            box-shadow: 0 5px 15px var(--shadow-color);
-        }
-        .price-tag span {
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-       
-        /* --- TAREA 1: ESTILOS DE NUEVA SECCIÓN DE POLÍTICAS --- */
-        .policy-header-visual {
-            text-align: center;
-            padding: 4rem 1rem;
-            border-radius: 20px;
-            background-color: var(--bg-secondary);
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .policy-header-visual .icon {
-            font-size: 4rem;
-            color: var(--accent);
-            opacity: 0.1;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg);
-        }
-        .policy-header-visual h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        .policy-header-visual h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.8s ease-out;
-        }
-        .is-visible .policy-header-visual h2::after {
-            transform: scaleX(1);
-        }
-        .policy-header-visual p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .dark-theme .section-title,
-        .dark-theme .policy-header-visual h2,
-        .dark-theme .service-content h3 {
-            color: var(--accent); /* Dorado para títulos en modo oscuro */
-        }
-
-        .dark-theme .policy-header-visual p {
-            color: var(--text-secondary); /* Gris claro para el párrafo en modo oscuro */
-        }
-
-        /* --- TAREA: MEJORA DE CONTRASTE EN MODO OSCURO (SECCIÓN FIDELIDAD) --- */
-        .dark-theme .fidelidad-section h3 {
-            color: var(--accent); /* Dorado para el título "¿Cómo funciona?" */
-        }
-
-        .dark-theme .fidelidad-section ul, .dark-theme .fidelidad-section strong {
-            color: var(--accent); /* Dorado para la lista y los elementos strong */
-        }
-        /* --- FIN TAREA --- */
-
-        .dark-theme .accordion-header h3 {
-            color: var(--text-primary); /* Blanco suave para los títulos del acordeón en modo oscuro */
-        }
-
-        .accordion-item {
-            background: transparent;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            transition: all 0.4s ease;
-        }
-        .accordion-item.open {
-            border-left: 5px solid var(--accent);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-            border-color: var(--accent);
-        }
-        .accordion-header {
-            padding: 20px 25px;
-            background-color: var(--bg-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .accordion-item.open .accordion-header {
-            background-color: var(--bg-tertiary);
-        }
-        .accordion-header:hover {
-             background-color: var(--bg-tertiary);
-        }
-        .accordion-header h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .accordion-header i {
-            transition: transform 0.4s ease;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        .accordion-content-inner {
-            padding: 25px;
-            background-color: var(--bg-secondary);
-        }
-        .policy-point {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-size: 1.1rem;
-        }
-        .policy-point-icon {
-            margin-right: 1rem;
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-top: 4px;
-        }
-        .highlight-box-policy {
-            background-color: var(--bg-tertiary);
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        .final-cta {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            background-color: var(--bg-tertiary);
-            border-radius: 20px;
-            margin-top: 3rem;
-        }
-        .final-cta p {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--primary);
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-        }
-        /* --- FIN TAREA 1 --- */
-
-        .footer {
-            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-hover) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-        }
-        .footer-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.3rem;
-            box-shadow: 0 8px 20px rgba(231, 185, 60, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-        }
-        .social-icon:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(231, 185, 60, 0.3);
-        }
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            border-radius: 20px;
-            padding: 50px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(31, 42, 68, 0.4), 0 10px 20px rgba(31, 42, 68, 0.1);
-        }
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(231, 185, 60, 0.2) 0%, rgba(231, 185, 60, 0) 60%);
-            animation: gradient 8s ease infinite;
-        }
-        .cta-section > * {
-            position: relative;
-            z-index: 1;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(231, 185, 60, 0.15) 0%, rgba(231, 185, 60, 0.05) 100%);
-            border-left: 5px solid var(--accent);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-        .highlight-box h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-        .reward-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow-color);
-        }
-        .reward-table thead {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-        }
-        .reward-table th {
-            padding: 20px;
-            text-align: left;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-        .reward-table td {
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-        .reward-table tr:hover {
-            background-color: var(--bg-tertiary);
-        }
-        .reward-table .points {
-            font-weight: 700;
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-        .banner {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-hover) 100%);
-            border-radius: 15px;
-            padding: 20px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 10px 30px rgba(31, 42, 68, 0.15);
-        }
-        .banner-text {
-            font-weight: 700;
-            color: white;
-            font-size: 1.1rem;
-        }
-        .banner-button {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: var(--primary);
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 20px rgba(231, 185, 60, 0.3);
-            text-decoration: none;
-            font-size: 15px;
-        }
-        .banner-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(231, 185, 60, 0.4);
-        }
-        .hero-section {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 0 100px rgba(0, 0, 0, 0.05);
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(31, 42, 68, 0.85) 0%, rgba(31, 42, 68, 0.6) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-        }
-        .hero-content {
-            max-width: 800px;
-            text-align: center;
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-        .hero-subtitle {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            border-radius: 3px;
-        }
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 50px;
-            line-height: 1.7;
-        }
-        .text-gradient {
-            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .badge-accent {
-            background: linear-gradient(135deg, rgba(231, 185, 60, 0.2) 0%, rgba(231, 185, 60, 0.1) 100%);
-            color: var(--accent);
-        }
-        .badge-primary {
-            background: linear-gradient(135deg, rgba(31, 42, 68, 0.2) 0%, rgba(31, 42, 68, 0.1) 100%);
-            color: var(--primary);
-        }
-        .card-hover-effect {
-            transition: all 0.4s ease;
-        }
-        .card-hover-effect:hover {
-            transform: translateY(-8px);
-        }
-        .hero-banner-bg {
-            background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); /* Reemplaza con tu imagen optimizada */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    </style>
 </head>
 <body class="text-dark-text">
+    <!-- =========================================================================
+         BANNER SUPERIOR
+         ========================================================================= -->
     <div class="banner-container">
-    <div class="banner max-w-7xl mx-auto">
-        <span class="banner-text">¿Buscando una mascota premium? →</span>
-        <a id="whatsapp-banner" href="https://wa.me/529811579841?text=Estoy%20interesado%20en%20sus%20mascotas%20premium." target="_blank" class="banner-button">
-            <i class="fab fa-whatsapp mr-2"></i> Contactar por WhatsApp
-        </a>
+        <div class="banner max-w-7xl mx-auto">
+            <span class="banner-text">¿Buscando una mascota premium? →</span>
+            <a id="whatsapp-banner" href="#" target="_blank" class="banner-button">
+                <i class="fab fa-whatsapp mr-2"></i> Contactar por WhatsApp
+            </a>
+        </div>
     </div>
-</div>
 
+    <!-- =========================================================================
+         HEADER / NAVEGACIÓN
+         ========================================================================= -->
     <header id="main-header" class="header-nav bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 nav-link" data-target="inicio">
                 <img src="assets/images/Logo.svg" alt="GCMiRinconcito Logo" class="w-16 h-16">
                 <span class="text-3xl font-bold text-primary font-serif">GCMiRinconcito</span>
             </a>
+            
+            <!-- Navegación Desktop -->
             <div class="hidden md:flex items-center space-x-10">
                 <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg active" data-target="inicio">
                     <i class="fas fa-home mr-2"></i> Inicio
@@ -1505,10 +61,15 @@
                 <a href="#" class="nav-link text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg" data-target="politicas">
                     <i class="fas fa-file-contract mr-2"></i> Políticas
                 </a>
+                <a href="manual-cuidados.html" class="text-medium-text hover:text-accent transition-colors duration-300 flex items-center text-lg">
+                    <i class="fas fa-book-medical mr-2"></i> Manual
+                </a>
                 <button id="theme-toggle" class="text-medium-text hover:text-accent transition-colors duration-300">
                     <i class="fas fa-moon text-xl"></i>
                 </button>
             </div>
+            
+            <!-- Botón menú móvil -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-primary focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1517,6 +78,8 @@
                 </button>
             </div>
         </nav>
+        
+        <!-- Menú móvil -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg active" data-target="inicio">
                 <i class="fas fa-home mr-2"></i> Inicio
@@ -1533,16 +96,25 @@
             <a href="#" class="block nav-link py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg" data-target="politicas">
                 <i class="fas fa-file-contract mr-2"></i> Políticas
             </a>
+            <a href="manual-cuidados.html" class="block py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg">
+                <i class="fas fa-book-medical mr-2"></i> Manual de Cuidados
+            </a>
             <button id="theme-toggle-mobile" class="block w-full text-left py-4 px-6 text-medium-text hover:bg-light flex items-center text-lg">
                 <i class="fas fa-moon mr-2"></i> Tema Oscuro
             </button>
         </div>
     </header>
 
+    <!-- =========================================================================
+         BOTÓN VOLVER ARRIBA
+         ========================================================================= -->
     <div id="back-to-top" class="float-button">
         <i class="fas fa-arrow-up"></i>
     </div>
    
+    <!-- =========================================================================
+         CHATBOT
+         ========================================================================= -->
     <div id="chat-bubble" class="chat-bubble" style="display: flex;">
         <i class="fas fa-comments"></i>
     </div>
@@ -1571,9 +143,16 @@
         </div>
     </div>
 
+    <!-- =========================================================================
+         CONTENIDO PRINCIPAL
+         ========================================================================= -->
     <main class="container mx-auto px-6 py-10 md:py-20">
+        
+        <!-- =================================================================
+             SECCIÓN: INICIO
+             ================================================================= -->
         <section id="inicio" class="page-content active">
-            <div class="hero-section animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+            <div class="hero-section animate-on-scroll">
                 <div class="h-96 md:h-[500px] rounded-2xl overflow-hidden" style="background-image: url('assets/images/Banner-hero.png'); background-size: cover; background-position: center;">
                     <div class="hero-overlay">
                         <div class="hero-content">
@@ -1587,27 +166,27 @@
                 </div>
             </div>
 
-            <div class="mt-20 text-center animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+            <div class="mt-20 text-center animate-on-scroll">
                 <h2 class="section-title font-serif">¡Bienvenidos a Nuestro Rincón!</h2>
                 <p class="section-subtitle">Somos una granja dedicada a la crianza responsable y al amor por los conejos. Aquí encontrarás ejemplares sanos, de excelente temperamento y criados en un ambiente óptimo. Explora nuestro sitio para conocer más sobre nuestras razas, productos y servicios.</p>
             </div>
 
             <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="feature-card animate-on-scroll card-hover is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+                <div class="feature-card animate-on-scroll card-hover">
                     <div class="feature-icon">
                         <i class="fas fa-seedling text-3xl text-white"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-3 text-primary">Alimento de Élite</h3>
                     <p class="text-medium-text text-lg">Nutrición balanceada para cada etapa de vida de tu mascota.</p>
                 </div>
-                <div class="feature-card animate-on-scroll card-hover is-visible" style="transition-delay: 150ms; animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+                <div class="feature-card animate-on-scroll card-hover" style="transition-delay: 150ms;">
                     <div class="feature-icon">
                         <i class="fas fa-wheat-awn text-3xl text-white"></i>
                     </div>
                     <h3 class="text-2xl font-semibold mb-3 text-primary">Heno Fresco Premium</h3>
                     <p class="text-medium-text text-lg">Esencial para su dieta y salud digestiva, siempre disponible.</p>
                 </div>
-                <div class="feature-card animate-on-scroll card-hover is-visible" style="transition-delay: 300ms; animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+                <div class="feature-card animate-on-scroll card-hover" style="transition-delay: 300ms;">
                     <div class="feature-icon">
                         <i class="fas fa-heart-pulse text-3xl text-white"></i>
                     </div>
@@ -1616,7 +195,7 @@
                 </div>
             </div>
 
-            <div class="mt-20 cta-section animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+            <div class="mt-20 cta-section animate-on-scroll">
                 <h2 class="text-4xl font-bold mb-6 text-white font-serif">Conoce a Nuestros Ejemplares</h2>
                 <p class="text-xl text-gray-200 mb-8">Descubre las maravillosas razas que criamos con una dedicación inigualable.</p>
                 <a href="#" class="btn-accent text-lg" data-target="razas">
@@ -1625,8 +204,11 @@
             </div>
         </section>
 
+        <!-- =================================================================
+             SECCIÓN: RAZAS
+             ================================================================= -->
         <section id="razas" class="page-content">
-            <div class="text-center animate-on-scroll is-visible" style="animation: 0.8s ease-out 0s 1 normal forwards running fadeUp;">
+            <div class="text-center animate-on-scroll">
                 <h2 class="section-title font-serif">Nuestras Razas Premium</h2>
                 <p class="section-subtitle">Cada ejemplar es un testimonio de nuestra dedicación a la pureza genética, la salud y un temperamento excepcional.</p>
             </div>
@@ -1641,11 +223,15 @@
                
                 <div class="breed-carousel overflow-x-auto pb-6 hide-scrollbar">
                     <div class="flex space-x-6 breed-gallery" style="width: max-content;">
-                        </div>
+                        <!-- Las tarjetas se generan dinámicamente desde JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- =================================================================
+             SECCIÓN: SERVICIOS
+             ================================================================= -->
         <section id="servicios" class="page-content">
             <div class="text-center animate-on-scroll">
                 <h2 class="section-title font-serif">Nuestros Productos y Servicios</h2>
@@ -1718,12 +304,15 @@
             <div class="mt-20 cta-section animate-on-scroll">
                 <h2 class="text-3xl font-bold mb-6 text-white font-serif">¿Necesitas asesoría personalizada?</h2>
                 <p class="text-xl text-gray-200 mb-8">Nuestros expertos están listos para ayudarte a elegir lo mejor para tu mascota.</p>
-                <a id="whatsapp-services" href="https://wa.me/529811579841?text=Necesito%20asesor%C3%ADa%20sobre%20sus%20productos%20y%20servicios." target="_blank" class="btn-accent text-lg">
+                <a id="whatsapp-services" href="#" target="_blank" class="btn-accent text-lg">
                     <i class="fab fa-whatsapp mr-2"></i> Consultar por WhatsApp
                 </a>
             </div>
         </section>
 
+        <!-- =================================================================
+             SECCIÓN: CLUB PREMIUM (FIDELIDAD)
+             ================================================================= -->
         <section id="fidelidad" class="page-content">
             <div class="bg-blue p-12 rounded-2xl shadow-xl animate-on-scroll">
                 <div class="text-center">
@@ -1805,13 +394,16 @@
                 <div class="mt-20 text-center animate-on-scroll">
                     <h3 class="text-2xl font-bold mb-6 text-primary">¿Listo para unirte al club?</h3>
                     <p class="text-medium-text mb-8 max-w-2xl mx-auto text-lg">Regístrate en tu próxima compra y comienza a disfrutar de los beneficios exclusivos de nuestro programa de lealtad.</p>
-                    <a id="whatsapp-club" href="https://wa.me/529811579841?text=Quiero%20unirme%20al%20Club%20Premium%20de%20GCMiRinconcito." target="_blank" class="btn-accent text-lg">
+                    <a id="whatsapp-club" href="#" target="_blank" class="btn-accent text-lg">
                         <i class="fab fa-whatsapp mr-2"></i> Registrarme Ahora
                     </a>
                 </div>
             </div>
         </section>
        
+        <!-- =================================================================
+             SECCIÓN: POLÍTICAS
+             ================================================================= -->
         <section id="politicas" class="page-content text-center">
             <div class="policy-header-visual animate-on-scroll">
                 <i class="fas fa-shield-alt icon"></i>
@@ -1820,6 +412,7 @@
             </div>
             
             <div class="space-y-8">
+                <!-- Política de Envíos -->
                 <div class="accordion-item animate-on-scroll">
                     <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
@@ -1852,6 +445,7 @@
                     </div>
                 </div>
 
+                <!-- Política de Apartado -->
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 100ms;">
                     <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
@@ -1878,6 +472,7 @@
                     </div>
                 </div>
 
+                <!-- Proceso de Devolución -->
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 200ms;">
                     <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
@@ -1900,6 +495,7 @@
                     </div>
                 </div>
 
+                <!-- Garantía GRAMIR -->
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 300ms;">
                     <button class="accordion-header justify-center w-full">
                          <div class="flex items-center">
@@ -1924,6 +520,7 @@
                     </div>
                 </div>
                 
+                <!-- Garantía de Reembolso Total -->
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 400ms;">
                     <button class="accordion-header justify-center w-full">
                         <div class="flex items-center">
@@ -1954,6 +551,7 @@
                     </div>
                 </div>
 
+                <!-- Cláusula General -->
                 <div class="accordion-item animate-on-scroll" style="transition-delay: 500ms;">
                     <button class="accordion-header justify-center w-full">
                          <div class="flex items-center">
@@ -1971,7 +569,7 @@
             </div>
 
             <div class="final-cta animate-on-scroll">
-                <p>🐇 “Nuestro compromiso va más allá de la venta: queremos que disfrutes la experiencia Mi Rinconcito desde el primer día.”</p>
+                <p>🐇 "Nuestro compromiso va más allá de la venta: queremos que disfrutes la experiencia Mi Rinconcito desde el primer día."</p>
                 <a href="https://wa.me/529811579841?text=Tengo%20una%20duda%20sobre%20sus%20pol%C3%ADticas." target="_blank" class="btn-accent text-lg">
                     <i class="fab fa-whatsapp mr-2"></i> ¿Tienes dudas? Contáctanos
                 </a>
@@ -1979,6 +577,9 @@
         </section>
     </main>
    
+    <!-- =========================================================================
+         FOOTER
+         ========================================================================= -->
     <footer class="footer text-white mt-20">
         <div class="container mx-auto px-6 py-12">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -1987,7 +588,7 @@
                     <span class="text-3xl font-bold font-serif">GCMiRinconcito</span>
                 </a>
                 <div class="flex space-x-6">
-                    <a id="whatsapp-footer" href="https://wa.me/529811579841?text=" target="_blank" class="social-icon">
+                    <a id="whatsapp-footer" href="#" target="_blank" class="social-icon">
                         <i class="fab fa-whatsapp text-xl"></i>
                     </a>
                     <a href="https://www.facebook.com/gcmirinconcito" target="_blank" class="social-icon">
@@ -2008,6 +609,9 @@
         </div>
     </footer>
 
+    <!-- =========================================================================
+         MODAL DE RAZAS
+         ========================================================================= -->
     <div id="breed-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2018,868 +622,9 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Debug: surface if `process` was accidentally injected into the browser (should be undefined)
-            try {
-                console.info('Runtime check - typeof process ->', typeof process);
-                if (typeof process !== 'undefined') {
-                    console.warn('Unexpected global `process` found in browser environment. This may indicate a build or script leak:', process);
-                }
-            } catch (e) {
-                console.warn('Could not check `process` presence safely:', e);
-            }
-
-            // Global handler to capture unhandled promise rejections and give more context
-            window.addEventListener('unhandledrejection', function (ev) {
-                console.error('Unhandled promise rejection:', ev.reason, ev);
-            });
-            // General page navigation and UI elements
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page-content');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const backToTopButton = document.getElementById('back-to-top');
-            const modal = document.getElementById('breed-modal');
-            const closeModal = document.querySelector('.close-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalBody = document.getElementById('modal-body');
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-           
-            // Theme toggle elements
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-           
-            // Chatbot UI elements
-            const chatBubble = document.getElementById('chat-bubble');
-            const chatWidget = document.getElementById('chat-widget');
-            const minimizeChat = document.getElementById('minimize-chat');
-            const closeChat = document.getElementById('close-chat');
-            const chatMessages = document.getElementById('chat-messages');
-            const chatInputField = document.getElementById('chat-input-field');
-            const chatSendBtn = document.getElementById('chat-send-btn');
-            const agentNameEl = document.getElementById('agent-name');
-
-            // Carousel elements
-            const carouselPrev = document.getElementById('carousel-prev');
-            const carouselNext = document.getElementById('carousel-next');
-            const breedGallery = document.querySelector('.breed-gallery');
-            const breedCarousel = document.querySelector('.breed-carousel');
-
-            // Chatbot state
-            const agentNames = ['Sofía', 'Carlos', 'Ana', 'Miguel', 'Laura'];
-            let currentAgentName = '';
-            let customerName = null;
-            let chatHistory = [];
-            let chatInitiated = false;
-            let conversationEnded = false;
-            let isWaitingForName = false;
-            let inactivityTimer = null;
-            let closeChatTimer = null;
-            let proactiveChatTimer = null;
-            let chatMinimized = false;
-
-            const synth = new Tone.Synth().toDestination();
-
-            // Theme toggle functionality
-            function toggleTheme() {
-                document.body.classList.toggle('dark-theme');
-                const isDark = document.body.classList.contains('dark-theme');
-                const themeIcon = document.querySelector('#theme-toggle i');
-                const themeIconMobile = document.querySelector('#theme-toggle-mobile i');
-               
-                if (isDark) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                    themeIconMobile.classList.remove('fa-moon');
-                    themeIconMobile.classList.add('fa-sun');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                    themeIconMobile.classList.remove('fa-sun');
-                    themeIconMobile.classList.add('fa-moon');
-                    localStorage.setItem('theme', 'light');
-                }
-            }
-
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                document.querySelector('#theme-toggle i').classList.remove('fa-moon');
-                document.querySelector('#theme-toggle i').classList.add('fa-sun');
-                document.querySelector('#theme-toggle-mobile i').classList.remove('fa-moon');
-                document.querySelector('#theme-toggle-mobile i').classList.add('fa-sun');
-            }
-
-            themeToggle.addEventListener('click', toggleTheme);
-            themeToggleMobile.addEventListener('click', toggleTheme);
-            
-            // --- TAREA 2: LÓGICA DE NAVEGACIÓN INTERACTIVA ---
-            const header = document.getElementById('main-header');
-            const banner = document.querySelector('.sticky.top-0.z-50'); // El banner superior
-            let lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-                // 1. Ocultar/mostrar header al hacer scroll
-                if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
-                    // Scroll Down
-                    header.classList.add('header-hidden');
-                } else {
-                    // Scroll Up
-                    header.classList.remove('header-hidden');
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-
-                // 2. Corregir transparencia del header al hacer scroll
-                // El top del header es la altura del banner que está encima
-                const bannerHeight = banner ? banner.offsetHeight : 0;
-                if (scrollTop > bannerHeight) {
-                    header.classList.remove('bg-white/80', 'backdrop-blur-lg');
-                    header.style.backgroundColor = 'var(--bg-secondary)'; // Usa el color de fondo del tema
-                } else {
-                    header.classList.add('bg-white/80', 'backdrop-blur-lg');
-                    header.style.backgroundColor = '';
-                }
-            });
-            // --- FIN TAREA 2 ---
-
-            function toggleChatWidget() {
-                // Resume audio context on first user gesture to satisfy browser autoplay policies
-                try {
-                    if (typeof Tone !== 'undefined' && Tone && Tone.context && Tone.context.state === 'suspended') {
-                        Tone.start?.();
-                    }
-                } catch (e) {
-                    console.warn('Could not start Tone on gesture:', e);
-                }
-
-                chatWidget.classList.toggle('visible');
-                chatBubble.style.display = chatWidget.classList.contains('visible') ? 'none' : 'flex';
-                clearTimeout(proactiveChatTimer); 
-               
-                if (chatWidget.classList.contains('visible') && !chatInitiated) {
-                    initiateChat();
-                }
-            }
-
-            function minimizeChatWidget() {
-                chatMinimized = !chatMinimized;
-               
-                if (chatMinimized) {
-                    // Ocultar el widget y mostrar la burbuja
-                    chatWidget.classList.remove('visible');
-                    chatBubble.style.display = 'flex';
-                } else {
-                    // Mostrar el widget y ocultar la burbuja
-                    chatWidget.classList.add('visible');
-                    chatBubble.style.display = 'none';
-                }
-            }
-
-            function closeChatWidget() {
-                chatWidget.classList.remove('visible');
-                chatBubble.style.display = 'flex';
-                chatMinimized = false;
-            }
-
-            function initiateChat() {
-                document.getElementById('connecting-loader')?.remove();
-                chatInitiated = true;
-                conversationEnded = false;
-                isWaitingForName = true;
-                customerName = null;
-                chatMessages.innerHTML = ''; // Limpiar mensajes
-                let availableAgents = agentNames.filter(name => name !== currentAgentName);
-                currentAgentName = availableAgents[Math.floor(Math.random() * availableAgents.length)];
-                agentNameEl.textContent = `Hablando con ${currentAgentName}`;
-
-                const namePrompt = `¡Hola! Soy ${currentAgentName}, tu agente comercial para esta sesión. Para darte una atención más personalizada, ¿con quién tengo el gusto?`;
-                addMessage(namePrompt, 'bot');
-                chatHistory = [{ role: 'model', parts: [{ text: namePrompt }] }];
-                setInactivityTimers();
-            }
-           
-            function addMessage(text, sender, isLoading = false, playSound = true) {
-                const messageEl = document.createElement('div');
-                messageEl.classList.add('message', sender);
-                if (isLoading) {
-                    messageEl.id = 'loading-indicator';
-                    messageEl.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
-                } else {
-                    messageEl.innerHTML = text; // innerHTML is used to render potential links
-                }
-                chatMessages.appendChild(messageEl);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                if (sender === 'bot' && !isLoading && playSound) {
-                    try {
-                        Tone.start();
-                        synth.triggerAttackRelease("G5", "16n");
-                        if ('vibrate' in navigator) {
-                            navigator.vibrate(100);
-                        }
-                    } catch (e) { console.log("Could not play sound or vibrate.", e); }
-                    if (!chatWidget.classList.contains('visible')) {
-                        chatBubble.classList.add('new-message');
-                        setTimeout(() => chatBubble.classList.remove('new-message'), 820);
-                    }
-                }
-            }
-           
-            function showRatingSystem() {
-                conversationEnded = true;
-                clearInactivityTimers();
-                const ratingContainer = document.createElement('div');
-                ratingContainer.className = 'rating-container';
-                ratingContainer.innerHTML = `<h4>¿Cómo calificarías mi atención?</h4><div class="stars">${[1,2,3,4,5].map(r => `<span class="star" data-rating="${r}"><i class="fas fa-star"></i></span>`).join('')}</div><button class="feedback-btn">Enviar calificación</button>`;
-                chatMessages.appendChild(ratingContainer);
-               
-                const stars = ratingContainer.querySelectorAll('.star');
-                stars.forEach(star => {
-                    star.addEventListener('click', function() {
-                        const rating = this.dataset.rating;
-                        stars.forEach(s => s.classList.toggle('active', s.dataset.rating <= rating));
-                    });
-                });
-               
-                ratingContainer.querySelector('.feedback-btn').addEventListener('click', function() {
-                    const activeStars = ratingContainer.querySelectorAll('.star.active').length;
-                    if (activeStars > 0) {
-                        const feedbackMessage = document.createElement('div');
-                        feedbackMessage.className = 'feedback-message feedback-success';
-                        feedbackMessage.textContent = `¡Gracias por tu calificación de ${activeStars} estrella${activeStars > 1 ? 's' : ''}!`;
-                        chatMessages.appendChild(feedbackMessage);
-                        ratingContainer.remove();
-                        showReconnectOption();
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }
-                });
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            function showReconnectOption() {
-                const reconnectContainer = document.createElement('div');
-                reconnectContainer.className = 'text-center p-5';
-                reconnectContainer.id = 'reconnect-container';
-                reconnectContainer.innerHTML = `<button id="reconnect-btn" class="reconnect-btn"><i class="fas fa-sync-alt mr-2"></i>Conectar con otro agente</button>`;
-                chatMessages.appendChild(reconnectContainer);
-                document.getElementById('reconnect-btn').addEventListener('click', () => {
-                    document.getElementById('reconnect-container').remove();
-                    const loader = document.createElement('div');
-                    loader.id = 'connecting-loader';
-                    loader.className = 'loader-container';
-                    loader.innerHTML = `<div class="spinner"></div><p>Buscando un agente disponible...</p>`;
-                    chatMessages.appendChild(loader);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                    const randomDelay = Math.random() * (50000) + 10000; // 10-60 seconds
-                    setTimeout(() => {
-                        chatInitiated = false; 
-                        initiateChat();
-                    }, randomDelay);
-                });
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            function clearInactivityTimers() {
-                clearTimeout(inactivityTimer);
-                clearTimeout(closeChatTimer);
-            }
-           
-            let usedInactivityMessages = new Set();
-            function getInactivityMessage() {
-                 const inactivityMessages = [
-                    "¿Sigues ahí? ¿Puedo ayudarte en algo más?",
-                    "Hola de nuevo, solo quería saber si todavía necesitas ayuda.",
-                    `¿Hay algo más en lo que pueda asistirte, ${customerName || ''}?`,
-                    "Me quedé esperando tu respuesta, ¿necesitas más información?"
-                ];
-                let availableMessages = inactivityMessages.filter(m => !usedInactivityMessages.has(m));
-                if (availableMessages.length === 0) {
-                    usedInactivityMessages.clear();
-                    availableMessages = inactivityMessages;
-                }
-                const message = availableMessages[Math.floor(Math.random() * availableMessages.length)];
-                usedInactivityMessages.add(message);
-                return message;
-            }
-
-            function setInactivityTimers() {
-                clearInactivityTimers();
-                if (conversationEnded) return;
-
-                inactivityTimer = setTimeout(() => {
-                    addMessage(getInactivityMessage(), 'bot');
-                    closeChatTimer = setTimeout(() => {
-                        addMessage("Parece que no hay nadie. He cerrado esta sesión por inactividad. Si quieres continuar, puedes iniciar un nuevo chat.", 'bot');
-                        conversationEnded = true;
-                        showReconnectOption();
-                    }, 60000); // 1 minuto
-                }, 30000); // 30 segundos
-            }
-           
-            async function callGemini(systemPrompt, history) {
-                // Cliente: solicita al endpoint serverless que haga la llamada a Gemini con la API key en el servidor.
-                let attempt = 0;
-                const maxAttempts = 2;
-                while (true) {
-                    try {
-                        attempt++;
-                    const userMessage = history && history.length ? history[history.length - 1].parts?.map(p => p.text).join(' ') : '';
-                    const resp = await fetch('/.netlify/functions/gemini', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ userMessage, context: systemPrompt })
-                    });
-
-                        if (!resp.ok) {
-                        const text = await resp.text().catch(() => 'no body');
-                        console.error('Proxy function error', resp.status, text);
-                        throw new Error('Proxy function error');
-                    }
-
-                        const contentType = resp.headers.get('content-type') || '';
-                        console.info(`callGemini: resp.status=${resp.status}, content-type=${contentType}`);
-                        const raw = await resp.text();
-                        console.info('callGemini: raw response body (first 1k chars):', raw.slice(0, 1024));
-                        let data;
-                        try {
-                            data = raw ? JSON.parse(raw) : null;
-                        } catch (parseErr) {
-                            console.error('callGemini: failed to parse JSON response:', parseErr, '\nraw:', raw);
-                            throw parseErr;
-                        }
-                        if (!data || typeof data.reply !== 'string') {
-                            console.error('Invalid proxy response', data);
-                            throw new Error('Invalid proxy response');
-                        }
-                        return data.reply;
-                    } catch (error) {
-                        const isChannelClosed = error && error.message && error.message.includes('message channel closed');
-                        console.error(`callGemini attempt ${attempt} failed:`, error);
-                        if (isChannelClosed && attempt < maxAttempts) {
-                            // small backoff and retry once
-                            await new Promise(r => setTimeout(r, 350));
-                            console.warn('Retrying callGemini due to transient message-channel close...');
-                            continue;
-                        }
-
-                        // Extra diagnostics for ReferenceError: process is not defined
-                        try {
-                            console.info('Diagnostics - typeof process:', typeof process);
-                            if (typeof process !== 'undefined') console.info('Diagnostics - process keys:', Object.keys(process || {}));
-                        } catch (diagErr) {
-                            console.warn('Could not run diagnostics for callGemini error:', diagErr);
-                        }
-                        const wrapped = new Error('callGemini failed: ' + (error && error.message ? error.message : String(error)));
-                        wrapped.original = error;
-                        throw wrapped;
-                    }
-                }
-            }
-
-            async function handleUserMessage() {
-                if (conversationEnded) return;
-                clearInactivityTimers();
-                const userText = chatInputField.value.trim();
-                if (!userText) return;
-
-                addMessage(userText, 'user');
-                chatInputField.value = '';
-               
-                if (isWaitingForName) {
-                    addMessage('', 'bot', true);
-                    const nameValidationPrompt = `Analiza la siguiente respuesta a la pregunta "¿Con quién tengo el gusto?": "${userText}". Determina si es un nombre de persona plausible y respetuoso. Considera el "albur" y doble sentido del español de México. Responde únicamente con "VALID" si es un nombre apropiado, o "INVALID" si es una broma, albur, o claramente no es un nombre.`;
-                   
-                    try {
-                        const validationHistory = [...chatHistory, { role: 'user', parts: [{ text: userText }] }];
-                        const validationResult = await callGemini(nameValidationPrompt, validationHistory);
-                        document.getElementById('loading-indicator')?.remove();
-                       
-                        if (validationResult && validationResult.trim().toUpperCase() === 'VALID') {
-                            customerName = userText;
-                            isWaitingForName = false;
-                            const greetingWithName = `¡Mucho gusto, ${customerName}! Ahora sí, ¿en qué puedo ayudarte hoy en GCMiRinconcito?`;
-                            addMessage(greetingWithName, 'bot');
-                            chatHistory.push({ role: 'user', parts: [{ text: `Mi nombre es ${userText}` }] });
-                            chatHistory.push({ role: 'model', parts: [{ text: greetingWithName }] });
-                            setInactivityTimers();
-                        } else {
-                            const jokeGenerationPrompt = `Eres ${currentAgentName}, un agente de chat profesional y con chispa. Un cliente ha respondido "${userText}" cuando le preguntaste su nombre, lo cual es inapropiado o es una broma (albur). Genera una respuesta corta, firme pero educada, pidiendo una comunicación respetuosa para poder continuar y pidiendo de nuevo el nombre. Varía la respuesta para no ser repetitiva. Ejemplos: "Entiendo el buen humor, pero para poder ayudarte de la mejor manera, te pido que mantengamos una comunicación respetuosa. ¿Podrías indicarme tu nombre, por favor?", "Para poder ofrecerte un servicio profesional, necesito que nos comuniquemos de forma clara. ¿Me podrías decir tu nombre?", "Aprecio la creatividad, pero mantengamos la conversación en un tono profesional para que pueda asistirte mejor. ¿Cuál es tu nombre?".`;
-                            const respectfulResponse = await callGemini(jokeGenerationPrompt, []);
-                            addMessage(respectfulResponse, 'bot');
-                            chatHistory.push({ role: 'model', parts: [{ text: respectfulResponse }] });
-                        }
-                    } catch(error) {
-                        console.error("Error during name validation:", error);
-                        document.getElementById('loading-indicator')?.remove();
-                        addMessage('Hubo un problema verificando la información. Vamos a continuar. ¿En qué puedo ayudarte?', 'bot');
-                        isWaitingForName = false; // Skip name validation if it fails
-                        setInactivityTimers();
-                    }
-                    return;
-                }
-               
-                addMessage('', 'bot', true);
-                chatHistory.push({ role: 'user', parts: [{ text: userText }] });
-
-                try {
-                    const systemPrompt = `Eres ${currentAgentName}, un agente comercial experto que representa a "Granja Cunícola Mi Rinconcito". Tu misión es brindar atención al cliente personalizada, profesional y cordial. Siempre te diriges al cliente por su nombre (${customerName}), usando un tono amigable, conciso y confiable.
-- Usa comillas ("") para resaltar palabras o ideas importantes.
-- NO escribas párrafos largos. Mantén un estilo natural, breve y con frases claras.
-- JAMÁS uses lenguaje negativo o dudoso.
-- Muestra empatía y entusiasmo sin parecer forzado.
-- Si confirmas que la duda principal fue resuelta, cierra con una pregunta amable como: "¿Puedo ayudarte en algo más, ${customerName}?" o "¿Hay algo más que te gustaría saber?".
-- Si el cliente dice que no tiene más dudas o desea terminar (por ejemplo: "eso es todo", "gracias, ya no"), responde ÚNICAMENTE: "FINALIZAR_SESION".
-- Tu conocimiento está ESTRICTAMENTE limitado a las razas (Nueva Zelanda, Californiano, Chinchilla, Mariposa, Belier Francés, Enano Holandés, Cabeza de León) y servicios (venta de alimento, heno, desparasitación, chequeo general). Siempre aclara que la disponibilidad puede variar por temporada. Si el cliente pregunta por algo fuera de este rango, responde de manera profesional: "No manejo esa información, pero puedo redirigirte al departamento de atención al cliente. ¿Te gustaría que te ponga en contacto con ellos?".
-- Cuando debas listar razas o servicios, usa listas HTML para mayor claridad: <p>Manejamos varias razas, como:</p><ul><li><i class='fas fa-paw mr-2 text-accent'></i>Nueva Zelanda</li><li><i class='fas fa-paw mr-2 text-accent'></i>Californiano</li></ul>.
-- Si detectas intención de compra (por ejemplo: "quiero comprar", "me interesa adquirir"), responde exactamente en el siguiente formato de dos líneas:
-COMPRA_INTENT:[RESUMEN CONCISO DEL INTERÉS DEL CLIENTE]
-¡Excelente decisión, ${customerName}! Para finalizar tu compra, por favor da clic en el siguiente botón:
-- Si un cliente expresa enojo o pide hablar con un gerente (detecta 'queja', 'molesto', 'problema' o 'gerente'), responde ÚNICAMENTE: "INICIAR_QUEJA".`;
-
-                    const botText = await callGemini(systemPrompt, chatHistory);
-                    document.getElementById('loading-indicator')?.remove();
-
-                    if (botText.startsWith('COMPRA_INTENT:')) {
-                        const parts = botText.split('\n');
-                        const summary = parts[0].replace('COMPRA_INTENT:', '').trim();
-                        const handoffMessage = parts.slice(1).join('\n');
-                        addMessage(handoffMessage, 'bot');
-                        const whatsappLink = getWhatsAppLink(`¡Hola! Vengo del chat con ${currentAgentName}. Mi nombre es ${customerName}. Resumen: ${summary}`);
-                        const handoffButton = document.createElement('div');
-                        handoffButton.classList.add('message', 'bot');
-                        handoffButton.innerHTML = `<a href="${whatsappLink}" target="_blank" class="whatsapp-handoff"><i class="fab fa-whatsapp mr-2"></i> Finalizar en WhatsApp</a>`;
-                        chatMessages.appendChild(handoffButton);
-                        setTimeout(() => { if (!conversationEnded) showRatingSystem(); }, 4000);
-                    } else if (botText.trim() === 'FINALIZAR_SESION') {
-                        addMessage(`Perfecto, ${customerName}. Ha sido un placer. Puedes calificar mi servicio a continuación.`, 'bot');
-                        showRatingSystem();
-                    } else if (botText.trim() === 'INICIAR_QUEJA') {
-                        const complaintMessages = [
-                            `Lamento mucho que tu experiencia no haya sido la ideal, ${customerName}. Tu opinión es muy importante. Por favor, completa el siguiente formulario para que un gerente revise tu caso.`,
-                            `Entiendo tu frustración, ${customerName}. Permíteme ayudarte. Puedes registrar tu caso en el siguiente formulario para atención directa de gerencia.`
-                        ];
-                        addMessage(complaintMessages[Math.floor(Math.random() * complaintMessages.length)], 'bot', false, false);
-                        const formLink = document.createElement('div');
-                        formLink.classList.add('message', 'bot');
-                        formLink.innerHTML = `<a href="https://forms.gle/YYwdiPqcGQZUSMug7" target="_blank" class="complaint-link"><i class="fas fa-file-signature mr-2"></i> Abrir Formulario</a>`;
-                        chatMessages.appendChild(formLink);
-                        addMessage('Al finalizarlo, tu caso será escalado. ¿Hay algo más en lo que pueda asistirte mientras tanto?', 'bot');
-                        setInactivityTimers();
-                    } else {
-                        addMessage(botText.replace(/"/g, '“').replace(/"/g, '”'), 'bot');
-                        setInactivityTimers();
-                    }
-                    chatHistory.push({ role: 'model', parts: [{ text: botText }] });
-                } catch (error) {
-                    console.error('Error con Gemini API:', error);
-                    document.getElementById('loading-indicator')?.remove();
-                    addMessage('Lo siento, tengo problemas de conexión. Por favor, intenta de nuevo más tarde.', 'bot');
-                    setInactivityTimers();
-                }
-            }
-           
-            // Event listeners for chat
-            chatBubble.addEventListener('click', toggleChatWidget);
-            minimizeChat.addEventListener('click', minimizeChatWidget);
-            closeChat.addEventListener('click', closeChatWidget);
-            chatSendBtn.addEventListener('click', handleUserMessage);
-            chatInputField.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleUserMessage(); });
-            chatInputField.addEventListener('input', () => { clearInactivityTimers(); setInactivityTimers(); });
-
-            proactiveChatTimer = setTimeout(() => { if(!chatWidget.classList.contains('visible')) toggleChatWidget(); }, 12000);
-
-            // General page logic
-            const whatsappBanner = document.getElementById('whatsapp-banner');
-            const whatsappServices = document.getElementById('whatsapp-services');
-            const whatsappClub = document.getElementById('whatsapp-club');
-            const whatsappFooter = document.getElementById('whatsapp-footer');
-            function getWhatsAppLink(message = '') {
-                const phoneNumber = '529811579841';
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            }
-            whatsappBanner.href = getWhatsAppLink('Estoy interesado en sus mascotas premium.');
-            whatsappServices.href = getWhatsAppLink('Necesito asesoría sobre sus productos y servicios.');
-            whatsappClub.href = getWhatsAppLink('Quiero unirme al Club Premium de GCMiRinconcito.');
-            whatsappFooter.href = getWhatsAppLink();
-
-            // Event listener for "Conoce nuestras razas" button
-            const knowBreedsBtn = document.querySelector('.know-breeds-btn');
-            if (knowBreedsBtn) {
-                knowBreedsBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    showPage('razas');
-                });
-            }
-
-            function showPage(targetId) {
-                pages.forEach(page => page.classList.remove('active'));
-                const targetPage = document.getElementById(targetId);
-                if (targetPage) targetPage.classList.add('active');
-                navLinks.forEach(link => link.classList.toggle('active', link.dataset.target === targetId));
-                mobileMenu.classList.add('hidden');
-                window.scrollTo(0, 0);
-                setupScrollAnimations();
-            }
-
-            navLinks.forEach(link => link.addEventListener('click', e => { e.preventDefault(); showPage(e.currentTarget.dataset.target); }));
-            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            window.addEventListener('scroll', () => backToTopButton.classList.toggle('visible', window.pageYOffset > 300));
-            backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-            // Carousel navigation
-            let scrollAmount = 0;
-            const cardWidth = 320 + 24; // Ancho de tarjeta + espacio
-            let autoScrollInterval = null; // Variable para el intervalo de auto-scroll
-           
-            carouselPrev.addEventListener('click', () => {
-                scrollAmount -= cardWidth;
-                if (scrollAmount < 0) {
-                    // Si llegamos al principio, saltar al final
-                    scrollAmount = breedGallery.scrollWidth - breedCarousel.clientWidth;
-                    breedCarousel.scrollLeft = scrollAmount;
-                    scrollAmount -= cardWidth;
-                }
-                breedCarousel.scrollTo({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            });
-           
-            carouselNext.addEventListener('click', () => {
-                scrollAmount += cardWidth;
-                if (scrollAmount > breedGallery.scrollWidth - breedCarousel.clientWidth) {
-                    // Si llegamos al final, saltar al principio
-                    scrollAmount = 0;
-                    breedCarousel.scrollLeft = scrollAmount;
-                    scrollAmount += cardWidth;
-                }
-                breedCarousel.scrollTo({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            });
-           
-            // Actualizar scrollAmount cuando el usuario se desplaza manualmente
-            breedCarousel.addEventListener('scroll', () => {
-                scrollAmount = breedCarousel.scrollLeft;
-            });
-
-            // --- TAREA: AUTOPLAY DEL CARRUSEL DE RAZAS ---
-            function startAutoScroll() {
-                stopAutoScroll(); // Detener cualquier intervalo anterior
-                autoScrollInterval = setInterval(() => {
-                    // Simular clic en el botón "siguiente"
-                    carouselNext.click();
-                }, 5000); // Cada 5 segundos
-            }
-            
-            function stopAutoScroll() {
-                clearInterval(autoScrollInterval);
-            }
-            
-            // Pausar al pasar el mouse sobre el carrusel
-            breedCarousel.addEventListener('mouseenter', stopAutoScroll);
-            carouselPrev.addEventListener('mouseenter', stopAutoScroll);
-            carouselNext.addEventListener('mouseenter', stopAutoScroll);
-            
-            // Reanudar cuando el mouse sale
-            breedCarousel.addEventListener('mouseleave', startAutoScroll);
-            carouselPrev.addEventListener('mouseleave', startAutoScroll);
-            carouselNext.addEventListener('mouseleave', startAutoScroll);
-
-            // Iniciar el auto-scroll al cargar la página
-            startAutoScroll();
-            // --- FIN TAREA ---
-
-            function setupBreedSection() {
-                const gallery = document.querySelector('.breed-gallery');
-                if (!gallery) return;
-                const allBreeds = {
-                    'nueva-zelanda': { 
-                        title: 'Nueva Zelanda', 
-                        images: [
-                            'assets/images/nueva-zelanda-1.png', 
-                            'assets/images/nueva-zelanda-2.png'
-                        ], 
-                        description: 'El conejo de Nueva Zelanda es una de las razas de conejos grandes más populares. Originario de Estados Unidos, a pesar de su nombre, se caracteriza por su cuerpo robusto y bien musculoso. Su pelaje es corto, denso y brillante, con colores que van del blanco al rojo. Son conocidos por su temperamento dócil y tranquilo, lo que los convierte en excelentes mascotas familiares.', 
-                        characteristics: [
-                            { name: 'Peso', value: '4 - 5 kg' }, 
-                            { name: 'Longevidad', value: '8 - 12 años' }, 
-                            { name: 'Tamaño', value: 'Grande' },
-                            { name: 'Origen', value: 'Estados Unidos' },
-                            { name: 'Temperamento', value: 'Tranquilo y dócil' },
-                            { name: 'Pelaje', value: 'Corto, denso y brillante' }
-                        ] 
-                    },
-                    'californiano': { 
-                        title: 'Californiano', 
-                        images: [
-                            'assets/images/californiano-1.png', 
-                            'assets/images/californiano-2.png',
-                            'assets/images/californiano-3.png'
-                        ], 
-                        description: 'El conejo Californiano es una raza desarrollada en California, Estados Unidos, a principios del siglo XX. Es el resultado del cruce entre las razas Nueva Zelanda y Chinchilla. Se caracteriza por su cuerpo mediano y bien proporcionado, con un pelaje blanco excepto en las extremidades, la cola, las orejas y la nariz, que son de color marrón oscuro o negro.', 
-                        characteristics: [
-                            { name: 'Peso', value: '3.5 - 4.5 kg' }, 
-                            { name: 'Longevidad', value: '10 - 12 años' }, 
-                            { name: 'Tamaño', value: 'Mediano' },
-                            { name: 'Origen', value: 'Estados Unidos' },
-                            { name: 'Temperamento', value: 'Activo y curioso' },
-                            { name: 'Pelaje', value: 'Blanco con extremidades oscuras' }
-                        ] 
-                    },
-                    'chinchilla': { 
-                        title: 'Chinchilla', 
-                        images: [
-                            'assets/images/chinchilla-1.png', 
-                            'assets/images/chinchilla-2.png',
-                            'assets/images/chinchilla-3.png',
-                            'assets/images/chinchilla-4.png'
-                        ], 
-                        description: 'El conejo Chinchilla es una raza originaria de Francia, desarrollada a finales del siglo XIX. Su nombre se debe al parecido de su pelaje con el de la chinchilla. Se caracteriza por su cuerpo mediano, orejas erectas y un pelaje denso y suave con un color gris plateado característico.', 
-                        characteristics: [
-                            { name: 'Peso', value: '2.5 - 3.5 kg' }, 
-                            { name: 'Longevidad', value: '10 - 12 años' }, 
-                            { name: 'Tamaño', value: 'Mediano' },
-                            { name: 'Origen', value: 'Francia' },
-                            { name: 'Temperamento', value: 'Inteligente y tranquilo' },
-                            { name: 'Pelaje', value: 'Gris plateado, denso y suave' }
-                        ] 
-                    },
-                    'mariposa': { 
-                        title: 'Mariposa', 
-                        images: [
-                            'assets/images/mariposa-1.png', 
-                            'assets/images/mariposa-2.png',
-                            'assets/images/mariposa-3.png'
-                        ], 
-                        description: 'El conejo Mariposa es una de las razas más antiguas y distintivas, originaria de Inglaterra. Su nombre proviene del patrón de su pelaje, que recuerda alas de mariposa. Se caracteriza por su cuerpo mediano, orejas erectas y un patrón de color único.', 
-                        characteristics: [
-                            { name: 'Peso', value: '2 - 3 kg' }, 
-                            { name: 'Longevidad', value: '12 - 14 años' }, 
-                            { name: 'Tamaño', value: 'Mediano' },
-                            { name: 'Origen', value: 'Inglaterra' },
-                            { name: 'Temperamento', value: 'Activo y juguetón' },
-                            { name: 'Pelaje', value: 'Blanco con manchas simétricas' }
-                        ] 
-                    },
-                    'belier-frances': { 
-                        title: 'Belier Francés', 
-                        images: [
-                            'assets/images/belier-frances-1.png', 
-                            'assets/images/belier-frances-2.png',
-                            'assets/images/belier-frances-3.png'
-                        ], 
-                        description: 'El Belier Francés es una de las razas de conejos más grandes y reconocibles, originaria de Francia. Se caracteriza por su cabeza voluminosa, orejas largas y caídas que pueden medir hasta 38 cm, y un cuerpo robusto.', 
-                        characteristics: [
-                            { name: 'Peso', value: '4.5 - 6 kg' }, 
-                            { name: 'Longevidad', value: '8 - 10 años' }, 
-                            { name: 'Tamaño', value: 'Grande' },
-                            { name: 'Origen', value: 'Francia' },
-                            { name: 'Temperamento', value: 'Tranquilo y afectuoso' },
-                            { name: 'Orejas', value: 'Largas y caídas (hasta 38 cm)' }
-                        ] 
-                    },
-                    'enano-holandes': { 
-                        title: 'Enano Holandés', 
-                        images: [
-                            'assets/images/enano-holandes-1.png', 
-                            'assets/images/enano-holandes-2.png',
-                            'assets/images/enano-holandes-3.png'
-                        ], 
-                        description: 'El Enano Holandés es la raza de conejo más pequeña del mundo, originaria de los Países Bajos. Se caracteriza por su cuerpo compacto, cabeza redonda y orejas cortas y erectas.', 
-                        characteristics: [
-                            { name: 'Peso', value: '0.9 - 1.3 kg' }, 
-                            { name: 'Longevidad', value: '10 - 12 años' }, 
-                            { name: 'Tamaño', value: 'Pequeño' },
-                            { name: 'Origen', value: 'Países Bajos' },
-                            { name: 'Temperamento', value: 'Vivaz y curioso' },
-                            { name: 'Cuerpo', value: 'Compacto y redondeado' }
-                        ] 
-                    },
-                    'cabeza-leon': { 
-                        title: 'Cabeza de León', 
-                        images: [
-                            'assets/images/cabeza-de-leon-1.png', 
-                            'assets/images/cabeza-de-leon-2.png',
-                            'assets/images/cabeza-de-leon-3.png',
-                            'assets/images/cabeza-de-leon-4.png'
-                        ], 
-                        description: 'El conejo Cabeza de León es una raza de origen belga, reconocida por su distintiva melena alrededor de la cabeza que recuerda a la de un león. Se caracteriza por su cuerpo pequeño y compacto, orejas erectas y un pelaje largo y denso.', 
-                        characteristics: [
-                            { name: 'Peso', value: '1.3 - 1.7 kg' }, 
-                            { name: 'Longevidad', value: '8 - 10 años' }, 
-                            { name: 'Tamaño', value: 'Pequeño (Toy)' },
-                            { name: 'Origen', value: 'Bélgica' },
-                            { name: 'Temperamento', value: 'Afectuoso y juguetón' },
-                            { name: 'Pelaje', value: 'Largo con melena característica' }
-                        ] 
-                    }
-                };
-                 const categories = { 
-                    'nueva-zelanda': 'grandes', 
-                    'californiano': 'medianas', 
-                    'chinchilla': 'medianas', 
-                    'mariposa': 'medianas', 
-                    'belier-frances': 'grandes',
-                    'enano-holandes': 'pequenas', 
-                    'cabeza-leon': 'pequenas' 
-                };
-                gallery.innerHTML = '';
-
-                 function renderCards(filter = 'all') {
-                    const allBreedKeys = Object.keys(allBreeds);
-
-                    const createCardHTML = (key) => {
-                        const breed = allBreeds[key];
-                        const category = categories[key];
-                        return `
-                        <div class="breed-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll" data-category="${category}" data-breed="${key}">
-                            <div class="relative h-56 overflow-hidden">
-                                <img src="${breed.images[0]}" alt="${breed.title}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                                <div class="absolute top-4 right-4 bg-accent text-primary text-sm font-bold px-4 py-2 rounded-full">${category.toUpperCase()}</div>
-                            </div>
-                            <div class="breed-card-content">
-                                <h3 class="breed-card-title">${breed.title}</h3>
-                                <p class="breed-card-description">${breed.description.substring(0, 120)}...</p>
-                                <div class="breed-card-characteristics">
-                                    ${breed.characteristics.slice(0, 3).map(c => `
-                                        <div class="breed-card-characteristic">
-                                            <i class="fas fa-check-circle"></i>
-                                            <strong>${c.name}:</strong> ${c.value}
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                <div class="breed-card-footer">
-                                    <button class="view-details btn-accent w-full text-center" data-breed="${key}">
-                                        <i class="fas fa-info-circle mr-2"></i> Ver detalles completos
-                                    </button>
-                                </div>
-                            </div>
-                        </div>`;
-                    };
-
-                    let cardsHTML = allBreedKeys.map(createCardHTML).join('');
-                    // Duplicar las tarjetas filtradas para el efecto infinito
-                    gallery.innerHTML = cardsHTML + cardsHTML;
-
-                    // Calcular el número total de tarjetas (duplicadas)
-                    const newCardCount = allBreedKeys.length * 2;
-                    const cardWidth = 320; // Ancho de cada tarjeta
-                    const gap = 24; // Espacio entre tarjetas
-                    const totalWidth = newCardCount * cardWidth + (newCardCount - 1) * gap;
-                    gallery.style.width = `${totalWidth}px`;
-
-                    // Reiniciar el scroll del carrusel
-                    breedCarousel.scrollLeft = 0;
-                    scrollAmount = 0;
-
-                    // Re-asignar los event listeners para los botones de "Ver detalles"
-                    gallery.querySelectorAll('.view-details').forEach(button => {
-                        button.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            const breedId = this.dataset.breed;
-                            const breed = allBreeds[breedId];
-                            if (!breed) return;
-
-                            modalTitle.textContent = breed.title;
-                            modalBody.innerHTML = `
-                                <div class="mb-8">
-                                    <div class="carousel-container">
-                                        <div class="carousel-track">
-                                             ${breed.images.map(img => `<div class="carousel-slide" style="background-image: url('${img}')"></div>`).join('')}
-                                         </div>
-                                         <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
-                                         <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
-                                     </div>
-                                     <div class="carousel-indicators">
-                                         ${breed.images.map((_, i) => `<span class="indicator ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
-                                     </div>
-                                 </div>
-                                 <div class="mb-8">
-                                     <h3 class="text-2xl font-bold mb-4 text-primary">Descripción</h3>
-                                     <p class="text-medium-text text-lg leading-relaxed">${breed.description}</p>
-                                 </div>
-                                 <div class="mb-8">
-                                     <h3 class="text-2xl font-bold mb-6 text-primary">Características</h3>
-                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                         ${breed.characteristics.map(c => `
-                                             <div class="bg-light p-4 rounded-lg border-l-4 border-accent">
-                                                 <h4 class="font-semibold text-primary text-lg">${c.name}</h4>
-                                                 <p class="text-medium-text">${c.value}</p>
-                                             </div>
-                                         `).join('')}
-                                     </div>
-                                 </div>
-                                 <div class="mt-10 text-center">
-                                     <a href="${getWhatsAppLink(`Estoy interesado en la raza ${breed.title}`)}" target="_blank" class="btn-accent text-lg">
-                                         <i class="fab fa-whatsapp mr-2"></i> Consultar por esta raza
-                                     </a>
-                                 </div>
-                             `;
-                            modal.style.display = 'block';
-                            initCarousel();
-                        });
-                    });
-                    
-                    // Forzar un reflow para asegurar que el carrusel se actualice correctamente
-                    gallery.offsetHeight;
-                }
-
-                renderCards(); // Renderizar todas las tarjetas inicialmente
-            }
-            setupBreedSection();
-
-            closeModal.addEventListener('click', () => modal.style.display = 'none');
-
-            window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
-
-            function initCarousel() {
-                const track = document.querySelector('.carousel-track');
-                if(!track) return;
-                const slides = Array.from(track.children);
-                const nextBtn = document.querySelector('.carousel-next');
-                const prevBtn = document.querySelector('.carousel-prev');
-                const indicators = document.querySelectorAll('.indicator');
-                let currentIndex = 0;
-                const updateCarousel = () => {
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    indicators.forEach((ind, i) => ind.classList.toggle('active', i === currentIndex));
-                };
-                nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); });
-                prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateCarousel(); });
-                indicators.forEach((ind, i) => ind.addEventListener('click', () => { currentIndex = i; updateCarousel(); }));
-            }
-
-            accordionHeaders.forEach(header => header.addEventListener('click', function() {
-                const item = this.parentElement;
-                const content = this.nextElementSibling;
-                const icon = this.querySelector('i');
-                
-                item.classList.toggle('open');
-                content.classList.toggle('active');
-                icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
-            }));
-
-            function setupScrollAnimations() {
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            entry.target.style.animation = 'fadeUp 0.8s ease-out forwards';
-                        }
-                    });
-                }, { threshold: 0.1 });
-                document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-            }
-            setupScrollAnimations();
-        });
-    </script>
+    <!-- =========================================================================
+         JAVASCRIPT MODULAR
+         ========================================================================= -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

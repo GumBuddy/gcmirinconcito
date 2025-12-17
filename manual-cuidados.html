@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Cuidados - GCMiRinconcito</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://gumbuddy.github.io/gcmirinconcito/assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* =====================================================
+           ESTILOS ESPECÍFICOS PARA MANUAL DE CUIDADOS
+           ===================================================== */
+        
+        /* Animaciones */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Hero del Manual */
+        .manual-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 50%, var(--primary) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .manual-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .hero-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Tarjetas de Sección */
+        .section-card {
+            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px var(--shadow-color);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+        }
+        
+        .section-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Iconos de Sección */
+        .section-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(231, 185, 60, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .section-card:hover .section-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Items de Lista */
+        .care-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            background-color: var(--bg-tertiary);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .care-item:hover {
+            border-left-color: var(--accent);
+            background-color: var(--bg-card-hover);
+            transform: translateX(8px);
+        }
+        
+        .care-item-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            color: white;
+        }
+        
+        .care-item-content h4 {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .care-item-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Tarjetas de Alerta */
+        .alert-card {
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border-left: 4px solid #ef4444;
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border-left: 4px solid #22c55e;
+        }
+        
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .alert-danger .alert-icon {
+            background-color: #fee2e2;
+            color: #ef4444;
+        }
+        
+        .alert-warning .alert-icon {
+            background-color: #fef3c7;
+            color: #f59e0b;
+        }
+        
+        .alert-success .alert-icon {
+            background-color: #dcfce7;
+            color: #22c55e;
+        }
+        
+        /* Grid de Alimentos */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .food-item {
+            background-color: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        .food-item:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+        
+        .food-item .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .food-item .name {
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .food-item .note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Plantas Tóxicas Grid */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .plant-tag {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 50px;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 500;
+            color: #dc2626;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .plant-tag:hover {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%);
+            transform: scale(1.05);
+        }
+        
+        /* Timeline de Cuidados */
+        .care-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .care-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-hover));
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--bg-tertiary);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.75rem;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-secondary);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+        
+        .timeline-item:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateX(8px);
+        }
+        
+        /* Navegación del Manual */
+        .manual-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: none;
+        }
+        
+        @media (min-width: 1280px) {
+            .manual-nav {
+                display: block;
+            }
+        }
+        
+        .manual-nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .manual-nav-item .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--text-tertiary);
+            transition: all 0.3s ease;
+        }
+        
+        .manual-nav-item .label {
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            margin-right: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        
+        .manual-nav-item:hover .label,
+        .manual-nav-item.active .label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .manual-nav-item:hover .dot,
+        .manual-nav-item.active .dot {
+            background-color: var(--accent);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(231, 185, 60, 0.5);
+        }
+        
+        /* Animaciones de Scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-left {
+            transform: translateX(-50px);
+        }
+        
+        .animate-left.is-visible {
+            transform: translateX(0);
+        }
+        
+        .animate-right {
+            transform: translateX(50px);
+        }
+        
+        .animate-right.is-visible {
+            transform: translateX(0);
+        }
+        
+        .animate-scale {
+            transform: scale(0.8);
+        }
+        
+        .animate-scale.is-visible {
+            transform: scale(1);
+        }
+        
+        /* Stagger delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
+        
+        /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 8px 25px rgba(31, 42, 68, 0.3);
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+        
+        .back-home-btn:hover {
+            transform: scale(1.1) rotate(-10deg);
+            box-shadow: 0 12px 35px rgba(31, 42, 68, 0.4);
+        }
+        
+        /* Scroll to Top */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: var(--primary);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 8px 25px rgba(231, 185, 60, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 12px 35px rgba(231, 185, 60, 0.4);
+        }
+        
+        /* Progress Bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Table of Contents Mobile */
+        .toc-mobile {
+            background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc-mobile h3 {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-list a:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--accent);
+            transform: translateX(8px);
+        }
+        
+        .toc-list a i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Dark Theme Adjustments */
+        .dark-theme .section-card {
+            border: 1px solid var(--border-color);
+        }
+        
+        .dark-theme .care-item-content h4,
+        .dark-theme .section-card h2 {
+            color: var(--accent);
+        }
+        
+        .dark-theme .food-item .name {
+            color: var(--accent);
+        }
+        
+        .dark-theme .plant-tag {
+            color: #fca5a5;
+            border-color: rgba(252, 165, 165, 0.3);
+        }
+    </style>
+</head>
+<body class="text-dark-text">
+    <!-- Barra de Progreso de Lectura -->
+    <div class="reading-progress" id="reading-progress"></div>
+    
+    <!-- =========================================================================
+         HEADER
+         ========================================================================= -->
+    <header class="header-nav bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="assets/images/Logo.svg" alt="GCMiRinconcito Logo" class="w-12 h-12">
+                <span class="text-2xl font-bold text-primary font-serif">GCMiRinconcito</span>
+            </a>
+            
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="text-medium-text hover:text-accent transition-colors duration-300 flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i> 
+                    <span class="hidden sm:inline">Volver al Inicio</span>
+                </a>
+                <button id="theme-toggle" class="text-medium-text hover:text-accent transition-colors duration-300">
+                    <i class="fas fa-moon text-xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- =========================================================================
+         HERO SECTION
+         ========================================================================= -->
+    <section class="manual-hero py-20 md:py-32 text-center text-white relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="hero-icon inline-block mb-6">
+                <span class="text-7xl">🐰</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold font-serif mb-6">Manual de Cuidados</h1>
+            <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-8">
+                Guía completa para garantizar la salud, felicidad y bienestar de tu conejo mascota.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#habitat" class="btn-accent px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105">
+                    <i class="fas fa-book-open mr-2"></i> Comenzar a Leer
+                </a>
+                <a href="index.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/30 hover:scale-105">
+                    <i class="fas fa-shopping-cart mr-2"></i> Ver Productos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         TABLA DE CONTENIDOS (MOBILE)
+         ========================================================================= -->
+    <div class="container mx-auto px-6 py-8 xl:hidden">
+        <div class="toc-mobile animate-on-scroll">
+            <h3><i class="fas fa-list"></i> Contenido del Manual</h3>
+            <ul class="toc-list">
+                <li><a href="#habitat"><i class="fas fa-home"></i> Hábitat y Alojamiento</a></li>
+                <li><a href="#alimentacion"><i class="fas fa-carrot"></i> Alimentación Diaria</a></li>
+                <li><a href="#premios"><i class="fas fa-gift"></i> Alimentos con Restricciones</a></li>
+                <li><a href="#prohibidos"><i class="fas fa-ban"></i> Alimentos Prohibidos</a></li>
+                <li><a href="#plantas"><i class="fas fa-leaf"></i> Plantas Tóxicas</a></li>
+                <li><a href="#salud"><i class="fas fa-heart-pulse"></i> Salud y Cuidados</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         NAVEGACIÓN LATERAL (DESKTOP)
+         ========================================================================= -->
+    <nav class="manual-nav">
+        <div class="manual-nav-item" data-section="habitat">
+            <span class="label">Hábitat</span>
+            <span class="dot"></span>
+        </div>
+        <div class="manual-nav-item" data-section="alimentacion">
+            <span class="label">Alimentación</span>
+            <span class="dot"></span>
+        </div>
+        <div class="manual-nav-item" data-section="premios">
+            <span class="label">Premios</span>
+            <span class="dot"></span>
+        </div>
+        <div class="manual-nav-item" data-section="prohibidos">
+            <span class="label">Prohibidos</span>
+            <span class="dot"></span>
+        </div>
+        <div class="manual-nav-item" data-section="plantas">
+            <span class="label">Plantas</span>
+            <span class="dot"></span>
+        </div>
+        <div class="manual-nav-item" data-section="salud">
+            <span class="label">Salud</span>
+            <span class="dot"></span>
+        </div>
+    </nav>
+
+    <!-- =========================================================================
+         CONTENIDO PRINCIPAL
+         ========================================================================= -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl">
+        
+        <!-- =================================================================
+             SECCIÓN 1: HÁBITAT Y ALOJAMIENTO
+             ================================================================= -->
+        <section id="habitat" class="mb-20 scroll-mt-24">
+            <div class="section-card animate-on-scroll">
+                <div class="flex items-center mb-8">
+                    <div class="section-icon">
+                        <i class="fas fa-home text-3xl text-white"></i>
+                    </div>
+                    <div class="ml-4">
+                        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Sección 1</span>
+                        <h2 class="text-3xl font-bold font-serif text-primary">Hábitat y Alojamiento</h2>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="care-item animate-on-scroll delay-100">
+                        <div class="care-item-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>Dimensiones de la Jaula</h4>
+                            <p>Debe ser lo más grande posible. El conejo debe poder estar completamente estirado (acostado) y de pie dentro de ella para garantizar su comodidad y bienestar.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item animate-on-scroll delay-200">
+                        <div class="care-item-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>Higiene y Suelo</h4>
+                            <p>Utiliza sustratos como viruta de madera o comprimidos para cubrir el suelo. Esto ayuda a mantener la higiene y proporciona comodidad a tu mascota.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item animate-on-scroll delay-300">
+                        <div class="care-item-icon">
+                            <i class="fas fa-toilet"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>Zona de Necesidades</h4>
+                            <p>Coloca una esquinera para que el conejo haga sus necesidades. <strong>Es fundamental realizar el cambio de sustrato cada cuatro días</strong> para mantener la higiene óptima.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item animate-on-scroll delay-400">
+                        <div class="care-item-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>Accesorios de Hidratación</h4>
+                            <p>Antes de adoptar, identifica si el conejo prefiere beber de un bebedero tipo biberón o tipo "bote". <strong>Asegúrate de que siempre tenga agua fresca disponible.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECCIÓN 2: ALIMENTACIÓN DIARIA
+             ================================================================= -->
+        <section id="alimentacion" class="mb-20 scroll-mt-24">
+            <div class="section-card animate-on-scroll">
+                <div class="flex items-center mb-8">
+                    <div class="section-icon">
+                        <i class="fas fa-carrot text-3xl text-white"></i>
+                    </div>
+                    <div class="ml-4">
+                        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Sección 2</span>
+                        <h2 class="text-3xl font-bold font-serif text-primary">Alimentación Diaria</h2>
+                    </div>
+                </div>
+                
+                <div class="alert-card alert-success mb-8 animate-on-scroll delay-100">
+                    <div class="alert-icon">
+                        <i class="fas fa-info-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-green-700 mb-1">Importante</h4>
+                        <p class="text-green-700">La dieta es el factor más importante para prevenir enfermedades en tu conejo.</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="food-item animate-on-scroll delay-200">
+                        <span class="emoji">🌾</span>
+                        <span class="name">Heno</span>
+                        <span class="note">Disponible siempre. Es el componente principal de su dieta.</span>
+                    </div>
+                    
+                    <div class="food-item animate-on-scroll delay-300">
+                        <span class="emoji">🥬</span>
+                        <span class="name">Verduras Permitidas</span>
+                        <span class="note">Hojas de lechuga (excepto iceberg) o de rábano frescas.</span>
+                    </div>
+                    
+                    <div class="food-item animate-on-scroll delay-400">
+                        <span class="emoji">🍽️</span>
+                        <span class="name">Pienso</span>
+                        <span class="note">Se puede incluir como complemento de su alimentación.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECCIÓN 3: ALIMENTOS CON RESTRICCIONES (PREMIOS)
+             ================================================================= -->
+        <section id="premios" class="mb-20 scroll-mt-24">
+            <div class="section-card animate-on-scroll">
+                <div class="flex items-center mb-8">
+                    <div class="section-icon">
+                        <i class="fas fa-gift text-3xl text-white"></i>
+                    </div>
+                    <div class="ml-4">
+                        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Sección 3</span>
+                        <h2 class="text-3xl font-bold font-serif text-primary">Alimentos con Restricciones</h2>
+                    </div>
+                </div>
+                
+                <div class="alert-card alert-warning mb-8 animate-on-scroll delay-100">
+                    <div class="alert-icon">
+                        <i class="fas fa-exclamation-triangle text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-amber-700 mb-1">Precaución</h4>
+                        <p class="text-amber-700">Estos alimentos solo deben darse de forma ocasional o en cantidades mínimas debido a su alto contenido de azúcar o grasa.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="care-item animate-on-scroll delay-200">
+                        <div class="care-item-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-apple-whole"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>🍌 Frutas Dulces</h4>
+                            <p>Plátano/banana (solo madura), chirimoya e higos. <strong>Máximo 1 vez al mes.</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item animate-on-scroll delay-300">
+                        <div class="care-item-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-lemon"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>🍑 Frutas con Hueso</h4>
+                            <p>Albaricoque, níspero, ciruela y durazno. <strong class="text-red-600">⚠️ Importante: Debes retirar la semilla y las áreas cercanas a ella, ya que contienen cianuro.</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item animate-on-scroll delay-400">
+                        <div class="care-item-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-wheat-awn"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>🌾 Cereales</h4>
+                            <p>Brindar en proporciones mínimas para evitar el sobrepeso.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item animate-on-scroll delay-500">
+                        <div class="care-item-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="care-item-content">
+                            <h4>🥦 Vegetales Específicos</h4>
+                            <p>Guisantes, chirivía y ruibarbo. <strong>Máximo 1 vez al año</strong> por su alto contenido de azúcar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECCIÓN 4: ALIMENTOS PROHIBIDOS
+             ================================================================= -->
+        <section id="prohibidos" class="mb-20 scroll-mt-24">
+            <div class="section-card animate-on-scroll" style="border-top: 5px solid #ef4444;">
+                <div class="flex items-center mb-8">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-skull-crossbones text-3xl text-white"></i>
+                    </div>
+                    <div class="ml-4">
+                        <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Sección 4 - Crítico</span>
+                        <h2 class="text-3xl font-bold font-serif text-primary">Alimentos Prohibidos y Peligrosos</h2>
+                    </div>
+                </div>
+                
+                <div class="alert-card alert-danger mb-8 animate-on-scroll delay-100">
+                    <div class="alert-icon">
+                        <i class="fas fa-ban text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-red-700 mb-1">¡Atención!</h4>
+                        <p class="text-red-700">Evita totalmente los siguientes alimentos para prevenir trastornos digestivos graves, anemia o la muerte.</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 animate-on-scroll delay-200">
+                        <h4 class="font-bold text-red-700 dark:text-red-400 mb-4 flex items-center">
+                            <i class="fas fa-carrot mr-2"></i> Tubérculos
+                        </h4>
+                        <ul class="space-y-2 text-red-600 dark:text-red-300">
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Papa (patata) - contiene solanina</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Boniato - alto en almidón</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 animate-on-scroll delay-300">
+                        <h4 class="font-bold text-red-700 dark:text-red-400 mb-4 flex items-center">
+                            <i class="fas fa-onion mr-2"></i> Bulbos
+                        </h4>
+                        <ul class="space-y-2 text-red-600 dark:text-red-300">
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Cebolla y puerros - causan anemia y gases</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Ajo - solo bajo recomendación veterinaria</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 animate-on-scroll delay-400">
+                        <h4 class="font-bold text-red-700 dark:text-red-400 mb-4 flex items-center">
+                            <i class="fas fa-bowl-rice mr-2"></i> Legumbres y Hongos
+                        </h4>
+                        <ul class="space-y-2 text-red-600 dark:text-red-300">
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Frijoles y habas - causan gases y diarrea</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Champiñones - pueden causar tumores</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6 animate-on-scroll delay-500">
+                        <h4 class="font-bold text-red-700 dark:text-red-400 mb-4 flex items-center">
+                            <i class="fas fa-list mr-2"></i> Otros
+                        </h4>
+                        <ul class="space-y-2 text-red-600 dark:text-red-300">
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Coliflor - causa gases</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Lechuga iceberg - tóxica por lactucarium</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Aguacate - contiene persin</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Productos lácteos</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle mr-2"></i> Rábano - indigesto (sus hojas sí son seguras)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECCIÓN 5: PLANTAS TÓXICAS
+             ================================================================= -->
+        <section id="plantas" class="mb-20 scroll-mt-24">
+            <div class="section-card animate-on-scroll" style="border-top: 5px solid #ef4444;">
+                <div class="flex items-center mb-8">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-leaf text-3xl text-white"></i>
+                    </div>
+                    <div class="ml-4">
+                        <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Sección 5 - Peligro</span>
+                        <h2 class="text-3xl font-bold font-serif text-primary">Plantas Tóxicas</h2>
+                    </div>
+                </div>
+                
+                <div class="alert-card alert-danger mb-8 animate-on-scroll delay-100">
+                    <div class="alert-icon">
+                        <i class="fas fa-skull text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-red-700 mb-1">¡Mantén alejado a tu conejo!</h4>
+                        <p class="text-red-700">Las siguientes plantas comunes pueden ser letales para tu mascota.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="font-bold text-primary mb-4 flex items-center">
+                        <i class="fas fa-flower mr-2 text-accent"></i> Flores de Jardín
+                    </h4>
+                    <div class="plants-grid animate-on-scroll delay-200">
+                        <span class="plant-tag"><i class="fas fa-times"></i> Adelfas</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Lirios</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Narcisos</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Tulipanes</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Iris</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Amapolas</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Campanillas</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-primary mb-4 flex items-center">
+                        <i class="fas fa-tree mr-2 text-accent"></i> Otras Plantas
+                    </h4>
+                    <div class="plants-grid animate-on-scroll delay-300">
+                        <span class="plant-tag"><i class="fas fa-times"></i> Helechos</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Hiedra</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Laurel</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Belladona</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Cicuta</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Estramonio</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Agave</span>
+                        <span class="plant-tag"><i class="fas fa-times"></i> Madreselva</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECCIÓN 6: SALUD Y CUIDADOS FÍSICOS
+             ================================================================= -->
+        <section id="salud" class="mb-20 scroll-mt-24">
+            <div class="section-card animate-on-scroll">
+                <div class="flex items-center mb-8">
+                    <div class="section-icon">
+                        <i class="fas fa-heart-pulse text-3xl text-white"></i>
+                    </div>
+                    <div class="ml-4">
+                        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Sección 6</span>
+                        <h2 class="text-3xl font-bold font-serif text-primary">Salud y Cuidados Físicos</h2>
+                    </div>
+                </div>
+                
+                <div class="care-timeline">
+                    <div class="timeline-item animate-on-scroll delay-100">
+                        <h4 class="font-bold text-primary text-lg mb-2 flex items-center">
+                            <i class="fas fa-brush text-accent mr-2"></i> Cepillado
+                        </h4>
+                        <p class="text-medium-text">Es vital cepillarlos a menudo (<strong>mínimo 1 vez al día durante la muda</strong>). A diferencia de los gatos, los conejos <strong>no pueden vomitar el pelo</strong>, y su ingesta puede causar una parada gastrointestinal grave.</p>
+                    </div>
+                    
+                    <div class="timeline-item animate-on-scroll delay-200">
+                        <h4 class="font-bold text-primary text-lg mb-2 flex items-center">
+                            <i class="fas fa-user-doctor text-accent mr-2"></i> Veterinario
+                        </h4>
+                        <p class="text-medium-text">Acude siempre a un <strong>especialista en animales exóticos</strong> con experiencia en conejos. No todos los veterinarios tienen la formación adecuada para tratar a estos animales.</p>
+                    </div>
+                    
+                    <div class="timeline-item animate-on-scroll delay-300">
+                        <h4 class="font-bold text-primary text-lg mb-2 flex items-center">
+                            <i class="fas fa-syringe text-accent mr-2"></i> Esterilización
+                        </h4>
+                        <p class="text-medium-text">Es fundamental para <strong>prevenir el cáncer</strong> (especialmente el de útero en hembras) y mejorar su calidad de vida y convivencia con otros conejos.</p>
+                    </div>
+                    
+                    <div class="timeline-item animate-on-scroll delay-400">
+                        <h4 class="font-bold text-primary text-lg mb-2 flex items-center">
+                            <i class="fas fa-poop text-accent mr-2"></i> Observación de Excretas
+                        </h4>
+                        <p class="text-medium-text">Las heces normales son <strong>redondas y compactas</strong>. Si ves heces en forma de racimo (cecatrofos), es normal; contienen nutrientes y el conejo puede ingerirlas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             CTA FINAL
+             ================================================================= -->
+        <section class="text-center animate-on-scroll">
+            <div class="cta-section py-16 px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white font-serif mb-6">
+                    ¿Necesitas más ayuda?
+                </h2>
+                <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                    Nuestros expertos están listos para asesorarte en el cuidado de tu conejo. ¡Contáctanos!
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/529811579841?text=Hola,%20tengo%20una%20duda%20sobre%20el%20cuidado%20de%20mi%20conejo" target="_blank" class="btn-accent px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105">
+                        <i class="fab fa-whatsapp mr-2"></i> Consultar por WhatsApp
+                    </a>
+                    <a href="index.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/30 hover:scale-105">
+                        <i class="fas fa-store mr-2"></i> Visitar Tienda
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================================
+         FOOTER
+         ========================================================================= -->
+    <footer class="footer text-white mt-12">
+        <div class="container mx-auto px-6 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-3 mb-6 md:mb-0">
+                    <img src="assets/images/Logo.svg" alt="GCMiRinconcito Logo" class="w-12 h-12">
+                    <span class="text-2xl font-bold font-serif">GCMiRinconcito</span>
+                </a>
+                <div class="flex space-x-6">
+                    <a href="https://wa.me/529811579841" target="_blank" class="social-icon">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/gcmirinconcito" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/gcmirinconcito/" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center border-t border-gray-700 pt-6">
+                <p class="text-gray-300">© 2024 GCMiRinconcito. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         BOTONES FLOTANTES
+         ========================================================================= -->
+    <a href="index.html" class="back-home-btn" title="Volver al Inicio">
+        <i class="fas fa-home"></i>
+    </a>
+    
+    <div class="scroll-top-btn" id="scroll-top" title="Volver Arriba">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- =========================================================================
+         JAVASCRIPT
+         ========================================================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // =============================================
+            // THEME TOGGLE
+            // =============================================
+            const themeToggle = document.getElementById('theme-toggle');
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                const isDark = document.body.classList.contains('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                
+                if (isDark) {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // =============================================
+            // SCROLL ANIMATIONS
+            // =============================================
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // =============================================
+            // READING PROGRESS BAR
+            // =============================================
+            const progressBar = document.getElementById('reading-progress');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                progressBar.style.width = progress + '%';
+            });
+            
+            // =============================================
+            // SCROLL TO TOP BUTTON
+            // =============================================
+            const scrollTopBtn = document.getElementById('scroll-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // =============================================
+            // SIDE NAVIGATION
+            // =============================================
+            const navItems = document.querySelectorAll('.manual-nav-item');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Click navigation
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Highlight current section
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        navItems.forEach(item => {
+                            if (item.dataset.section === sectionId) {
+                                item.classList.add('active');
+                            } else {
+                                item.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            // =============================================
+            // SMOOTH SCROLL FOR ANCHOR LINKS
+            // =============================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

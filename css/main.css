@@ -1,0 +1,44 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - ESTILOS PRINCIPALES
+ * =============================================================================
+ * 
+ * Este archivo importa todos los módulos CSS del proyecto.
+ * Está organizado de forma modular para facilitar el mantenimiento.
+ * 
+ * ESTRUCTURA DE ARCHIVOS:
+ * - variables.css    → Variables CSS (colores, espaciado, etc.)
+ * - base.css         → Estilos base (body, tipografía)
+ * - animations.css   → Keyframes y clases de animación
+ * - components.css   → Componentes reutilizables (botones, tarjetas)
+ * - navigation.css   → Header, navegación, botón flotante
+ * - hero.css         → Hero section y parallax
+ * - breeds.css       → Tarjetas de razas de conejos
+ * - modal.css        → Modales y carruseles
+ * - accordion.css    → Acordeones de políticas
+ * - chatbot.css      → Widget de chat con IA
+ * - footer.css       → Footer y tabla de recompensas
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* Core */
+@import 'variables.css';
+@import 'base.css';
+@import 'animations.css';
+
+/* Components */
+@import 'components.css';
+
+/* Layout */
+@import 'navigation.css';
+@import 'hero.css';
+
+/* Features */
+@import 'breeds.css';
+@import 'modal.css';
+@import 'accordion.css';
+@import 'chatbot.css';
+@import 'footer.css';

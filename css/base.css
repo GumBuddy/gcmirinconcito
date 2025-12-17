@@ -1,0 +1,112 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - ESTILOS BASE
+ * =============================================================================
+ * 
+ * Estilos fundamentales del sitio: tipografía, body, enlaces base.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   ESTILOS DEL BODY
+   ============================================================================= */
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(231, 185, 60, 0.05) 0%, rgba(231, 185, 60, 0) 20%),
+        linear-gradient(to bottom, var(--bg-primary), var(--bg-tertiary));
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* =============================================================================
+   TIPOGRAFÍA
+   ============================================================================= */
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 3px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto 50px;
+    line-height: 1.7;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =============================================================================
+   BADGES
+   ============================================================================= */
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-accent {
+    background: linear-gradient(135deg, rgba(231, 185, 60, 0.2) 0%, rgba(231, 185, 60, 0.1) 100%);
+    color: var(--accent);
+}
+
+.badge-primary {
+    background: linear-gradient(135deg, rgba(31, 42, 68, 0.2) 0%, rgba(31, 42, 68, 0.1) 100%);
+    color: var(--primary);
+}
+
+/* =============================================================================
+   CORRECCIONES DE TEMA OSCURO
+   ============================================================================= */
+.dark-theme .section-title,
+.dark-theme .policy-header-visual h2,
+.dark-theme .service-content h3 {
+    color: var(--accent);
+}
+
+.dark-theme .policy-header-visual p {
+    color: var(--text-secondary);
+}
+
+.dark-theme .fidelidad-section h3 {
+    color: var(--accent);
+}
+
+.dark-theme .fidelidad-section ul, 
+.dark-theme .fidelidad-section strong {
+    color: var(--accent);
+}
+
+.dark-theme .accordion-header h3 {
+    color: var(--text-primary);
+}

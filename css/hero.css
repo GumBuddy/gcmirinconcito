@@ -1,0 +1,109 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - HERO Y SECCIONES PRINCIPALES
+ * =============================================================================
+ * 
+ * Estilos para hero section, parallax y secciones destacadas.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   HERO SECTION
+   ============================================================================= */
+.hero-section {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 0 100px rgba(0, 0, 0, 0.05);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(31, 42, 68, 0.85) 0%, rgba(31, 42, 68, 0.6) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.hero-content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-banner-bg {
+    background-image: url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* =============================================================================
+   PARALLAX
+   ============================================================================= */
+.parallax { 
+    background-attachment: fixed; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(31, 42, 68, 0.8) 0%, rgba(31, 42, 68, 0.4) 100%);
+    z-index: 1;
+}
+
+.parallax > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* =============================================================================
+   FINAL CTA
+   ============================================================================= */
+.final-cta {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    margin-top: 3rem;
+}
+
+.final-cta p {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--primary);
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+}

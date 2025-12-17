@@ -1,0 +1,137 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - ANIMACIONES CSS
+ * =============================================================================
+ * 
+ * Contiene todas las animaciones keyframes y clases de animación.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   KEYFRAMES
+   ============================================================================= */
+
+/* Animación de flotación suave */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Efecto shimmer/brillo */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Fade con movimiento hacia arriba */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in simple */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide desde la izquierda */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide hacia arriba (para modales) */
+@keyframes slideUp { 
+    from { 
+        transform: translateY(80px); 
+        opacity: 0; 
+    } 
+    to { 
+        transform: translateY(0); 
+        opacity: 1; 
+    } 
+}
+
+/* Animación de gradiente */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animación de shake (para notificaciones) */
+@keyframes shake { 
+    10%, 90% { transform: translate3d(-2px, 0, 0); } 
+    20%, 80% { transform: translate3d(4px, 0, 0); } 
+    30%, 50%, 70% { transform: translate3d(-8px, 0, 0); } 
+    40%, 60% { transform: translate3d(8px, 0, 0); } 
+}
+
+/* Animación de typing (puntos de carga) */
+@keyframes typing { 
+    0%, 60%, 100% { transform: translateY(0); } 
+    30% { transform: translateY(-8px); } 
+}
+
+/* Rotación continua (spinner) */
+@keyframes rotation { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}
+
+/* Pulse lento */
+@keyframes pulse-slow {
+    0%, 100% { 
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 30px rgba(31, 42, 68, 0.2);
+    }
+    50% { 
+        box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4), 0 0 50px rgba(31, 42, 68, 0.3);
+    }
+}
+
+/* Fade para mensajes del chat */
+@keyframes fadeInMessage { 
+    from { opacity: 0; transform: translateY(15px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* =============================================================================
+   CLASES DE ANIMACIÓN
+   ============================================================================= */
+
+/* Animación al hacer scroll */
+.animate-on-scroll { 
+    opacity: 0; 
+    transform: translateY(40px); 
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.animate-on-scroll.is-visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* Efecto hover con elevación */
+.card-hover-effect {
+    transition: all 0.4s ease;
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-8px);
+}

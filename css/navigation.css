@@ -1,0 +1,147 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - NAVEGACIÓN Y HEADER
+ * =============================================================================
+ * 
+ * Estilos para el header, navegación principal y menú móvil.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   HEADER
+   ============================================================================= */
+header.header-nav {
+    transition: transform 0.4s ease-in-out, background-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* Corrección de contraste en modo oscuro */
+.dark-theme .header-nav.bg-white\/80 {
+    background-color: rgba(27, 36, 56, 0.8);
+}
+
+/* =============================================================================
+   NAVEGACIÓN
+   ============================================================================= */
+.nav-link {
+    position: relative;
+    transition: color var(--transition-normal);
+}
+
+.nav-link.active { 
+    color: var(--accent); 
+    font-weight: 700; 
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 2px;
+    animation: shimmer 2s infinite;
+}
+
+/* =============================================================================
+   PÁGINAS (SPA)
+   ============================================================================= */
+.page-content { 
+    display: none; 
+}
+
+.page-content.active { 
+    display: block; 
+}
+
+/* =============================================================================
+   BOTÓN FLOTANTE (BACK TO TOP)
+   ============================================================================= */
+.float-button { 
+    position: fixed; 
+    bottom: 30px;
+    right: 110px;
+    width: 60px; 
+    height: 60px; 
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    color: var(--primary); 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 24px; 
+    box-shadow: 0 10px 25px rgba(231, 185, 60, 0.4), 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer; 
+    transition: all 0.4s ease; 
+    z-index: 100; 
+    opacity: 0; 
+    visibility: hidden;
+    border: none;
+}
+
+.float-button.visible { 
+    opacity: 1; 
+    visibility: visible; 
+    animation: float 3s ease-in-out infinite;
+}
+
+.float-button:hover { 
+    transform: scale(1.1) rotate(15deg);
+    background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+    box-shadow: 0 15px 35px rgba(231, 185, 60, 0.5);
+}
+
+/* =============================================================================
+   BOTONES DE FILTRO
+   ============================================================================= */
+.filter-btn { 
+    transition: all 0.4s ease; 
+    border-radius: var(--radius-full);
+    padding: 12px 24px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: none;
+    cursor: pointer;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.filter-btn.active { 
+    color: white;
+    box-shadow: 0 6px 20px rgba(31, 42, 68, 0.3);
+}
+
+.filter-btn.active::before {
+    opacity: 1;
+}
+
+.filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,143 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - TARJETAS DE RAZAS
+ * =============================================================================
+ * 
+ * Estilos para las tarjetas de razas de conejos.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   BREED CARD
+   ============================================================================= */
+.breed-card { 
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 15px 35px var(--shadow-color);
+    background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.breed-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(31, 42, 68, 0.05) 0%, rgba(31, 42, 68, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+.breed-card:hover { 
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-card-hover);
+}
+
+.breed-card:hover::after {
+    opacity: 1;
+}
+
+.breed-card img {
+    transition: transform 0.8s ease;
+}
+
+.breed-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Contenido de la tarjeta */
+.breed-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.breed-card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+    position: relative;
+}
+
+.breed-card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 2px;
+}
+
+.breed-card-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.breed-card-characteristics {
+    margin-top: auto;
+}
+
+.breed-card-characteristic {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.breed-card-characteristic i {
+    color: var(--accent);
+    margin-right: 0.6rem;
+    font-size: 0.8rem;
+}
+
+.breed-card-characteristic strong {
+    color: var(--primary);
+    margin-right: 0.3rem;
+    font-weight: 600;
+}
+
+.breed-card-footer {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* =============================================================================
+   CARRUSEL DE RAZAS
+   ============================================================================= */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.breed-carousel {
+    scroll-behavior: smooth;
+    padding: 0 40px;
+}

@@ -1,0 +1,105 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - FOOTER Y TABLA DE RECOMPENSAS
+ * =============================================================================
+ * 
+ * Estilos para el footer y la tabla del programa de fidelidad.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+.footer {
+    background: linear-gradient(180deg, var(--primary) 0%, var(--primary-hover) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+}
+
+.footer-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.3rem;
+    box-shadow: 0 8px 20px rgba(231, 185, 60, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    color: white;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(231, 185, 60, 0.3);
+}
+
+/* =============================================================================
+   TABLA DE RECOMPENSAS
+   ============================================================================= */
+.reward-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.reward-table thead {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+}
+
+.reward-table th {
+    padding: 20px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.reward-table td {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+}
+
+.reward-table tr:hover td {
+    background-color: var(--bg-tertiary);
+}
+
+.reward-table .points {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.1rem;
+}

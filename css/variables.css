@@ -1,0 +1,92 @@
+/**
+ * =============================================================================
+ * GCMIRINCONCITO - VARIABLES CSS
+ * =============================================================================
+ * 
+ * Este archivo contiene todas las variables CSS (custom properties) del sitio.
+ * Incluye la paleta de colores para tema claro y oscuro.
+ * 
+ * @version 1.0.0
+ * @author GCMiRinconcito Team
+ * =============================================================================
+ */
+
+/* =============================================================================
+   TEMA CLARO (Por defecto)
+   ============================================================================= */
+:root {
+    /* --- Fondos --- */
+    --bg-primary: #F9FAFB;           /* Fondo principal - Blanco Suave */
+    --bg-secondary: #FFFFFF;          /* Fondo secundario - Blanco puro */
+    --bg-tertiary: #E9ECEF;           /* Fondo terciario - Gris Perla */
+    --bg-card-hover: #F3F4F6;         /* Hover de tarjetas */
+    --bg-card-active: #E9ECEF;        /* Estado activo de tarjetas */
+
+    /* --- Textos --- */
+    --text-primary: #243044;          /* Texto principal - Azul Carbón */
+    --text-secondary: #6B7280;        /* Texto secundario - Gris Medio */
+    --text-tertiary: #D1D5DB;         /* Texto terciario - Gris Claro */
+
+    /* --- Color de Acento (Dorado) --- */
+    --accent: #E7B93C;                /* Dorado Suave - Principal */
+    --accent-hover: #F6C84C;          /* Amarillo Miel - Hover */
+    --accent-active: #CFA034;         /* Dorado oscuro - Active */
+
+    /* --- Color Primario (Azul Marino) --- */
+    --primary: #1F2A44;               /* Azul Marino Profundo */
+    --primary-hover: #2C3E60;         /* Azul Marino - Hover */
+    --primary-active: #1F2A44;        /* Azul Marino - Active */
+
+    /* --- Bordes y Sombras --- */
+    --border-color: #D1D5DB;          /* Color de bordes - Gris Claro */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    /* --- Utilidades --- */
+    --neutral-dark: #3B4258;          /* Gris Oscuro para inputs */
+    
+    /* --- Transiciones --- */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* --- Bordes Redondeados --- */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --radius-full: 50px;
+}
+
+/* =============================================================================
+   TEMA OSCURO
+   ============================================================================= */
+.dark-theme {
+    /* --- Fondos --- */
+    --bg-primary: #0E1628;            /* Azul Nocturno */
+    --bg-secondary: #1B2438;          /* Azul Grisáceo */
+    --bg-tertiary: #2A3552;           /* Fondo terciario oscuro */
+    --bg-card-hover: #222C44;         /* Hover de tarjetas */
+    --bg-card-active: #2A3552;        /* Estado activo de tarjetas */
+
+    /* --- Textos --- */
+    --text-primary: #F9FAFB;          /* Blanco Suave */
+    --text-secondary: #D1D5DB;        /* Gris Claro */
+    --text-tertiary: #9CA3AF;         /* Gris más claro */
+
+    /* --- Color de Acento (Dorado) - Se mantiene igual --- */
+    --accent: #E7B93C;                /* Dorado Cálido */
+    --accent-hover: #F6C84C;          /* Dorado Brillante */
+    --accent-active: #CFA034;         /* Dorado más oscuro */
+
+    /* --- Color Primario (Azul Marino) - Se mantiene igual --- */
+    --primary: #1F2A44;
+    --primary-hover: #2C3E60;
+    --primary-active: #1F2A44;
+
+    /* --- Bordes y Sombras --- */
+    --border-color: #2C3550;          /* Azul Acero */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    
+    /* --- Utilidades --- */
+    --neutral-dark: #3B4258;
+}
