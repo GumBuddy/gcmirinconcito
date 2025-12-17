@@ -65,7 +65,7 @@ class AnimationsManager {
         );
         
         animatedElements.forEach(el => {
-            el.classList.add('animate-hidden');
+            // No añadir animate-hidden, usar directamente el observer
             this.observer.observe(el);
         });
     }

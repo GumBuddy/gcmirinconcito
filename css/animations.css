@@ -115,16 +115,35 @@
    CLASES DE ANIMACIÓN
    ============================================================================= */
 
-/* Animación al hacer scroll */
-.animate-on-scroll { 
+/* 
+ * Animación al hacer scroll
+ * Solo ocultar si JS está activo para evitar contenido invisible
+ * cuando JavaScript falla
+ */
+.js-ready .animate-on-scroll { 
     opacity: 0; 
     transform: translateY(40px); 
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
-.animate-on-scroll.is-visible { 
-    opacity: 1; 
-    transform: translateY(0); 
+/* Fallback: mostrar contenido si no hay JS */
+.animate-on-scroll {
+    opacity: 1;
+    transform: none;
+}
+
+/* Estado inicial oculto (añadido por JS) */
+.animate-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-on-scroll.is-visible,
+.animate-on-scroll.animate-visible,
+.animate-hidden.animate-visible { 
+    opacity: 1 !important; 
+    transform: translateY(0) !important; 
 }
 
 /* Efecto hover con elevación */

@@ -110,3 +110,14 @@ body {
 .dark-theme .accordion-header h3 {
     color: var(--text-primary);
 }
+
+/* =============================================================================
+   PÁGINAS (SPA) - ESTILOS CRÍTICOS
+   ============================================================================= */
+.page-content { 
+    display: none; 
+}
+
+.page-content.active { 
+    display: block; 
+}

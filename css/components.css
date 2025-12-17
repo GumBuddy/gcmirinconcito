@@ -320,6 +320,11 @@
 /* =============================================================================
    BANNER
    ============================================================================= */
+.banner-container {
+    background: var(--primary);
+    padding: 15px 20px;
+}
+
 .banner {
     background: linear-gradient(90deg, var(--primary) 0%, var(--primary-hover) 100%);
     border-radius: 15px;

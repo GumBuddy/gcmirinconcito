@@ -45,6 +45,9 @@ class App {
             // Esperar a que el DOM esté listo
             await this.waitForDOM();
             
+            // Marcar que JavaScript está listo (para animaciones CSS)
+            document.body.classList.add('js-ready');
+            
             // Inicializar módulos
             this.initModules();
             
@@ -56,6 +59,8 @@ class App {
             
         } catch (error) {
             console.error('❌ Error initializing app:', error);
+            // Si hay error, asegurar que el contenido sea visible
+            document.body.classList.remove('js-ready');
         }
     }
 
